@@ -1,149 +1,758 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>صفحه اصلی - تیکت تئاتر</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/babel-standalone@7.22.9/babel.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تئاترلند - خرید بلیت تئاتر آنلاین</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;200;300;400;500;600;700;800;900&display=swap');
+        
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .navy-gradient {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        }
+        
+        .play-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .nav-link::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: #3b82f6;
+            transition: width 0.3s;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .search-box {
+            box-shadow: 0 10px 25px rgba(15, 23, 42, 0.2);
+            border-radius: 12px;
+        }
+        
+        .category-chip {
+            transition: all 0.3s ease;
+        }
+        
+        .category-chip:hover {
+            background-color: #3b82f6;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .date-badge {
+            transition: all 0.3s ease;
+        }
+        
+        .date-badge:hover {
+            transform: scale(1.05);
+        }
+        
+        .theater-card {
+            transition: all 0.3s ease;
+        }
+        
+        .theater-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .blur-effect {
+            backdrop-filter: blur(8px);
+            background-color: rgba(15, 23, 42, 0.7);
+        }
+        
+        .ticket-btn {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .ticket-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
+        }
+        
+        .countdown-item {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+        }
+        
+        .scroll-hidden::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
 </head>
-<body class="bg-gray-50 font-sans">
-  <div id="root"></div>
-
-  <script type="text/babel">
-    console.log("Starting React app...");
-
-    function Header() {
-      console.log("Rendering Header");
-      return (
-        <header className="bg-teal-700 text-white shadow-md sticky top-0 z-10">
-          <div className="container mx-auto flex justify-between items-center py-4 px-6">
-            <div className="text-2xl font-bold">تیکت تئاتر</div>
-            <nav className="flex space-x-6">
-              <a href="#" className="hover:text-teal-200">رویدادها</a>
-              <a href="#" className="hover:text-teal-200">سالن‌ها</a>
-              <a href="#" className="hover:text-teal-200">مجله</a>
-              <a href="#" className="hover:text-teal-200">درباره ما</a>
-            </nav>
-            <div>
-              <button className="bg-white text-teal-700 px-4 py-2 rounded-lg hover:bg-teal-100">
-                ورود / ثبت‌نام
-              </button>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="navy-gradient text-white sticky top-0 z-50 shadow-xl">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-8 space-x-reverse">
+                    <a href="#" class="text-2xl font-bold flex items-center">
+                        <i class="fas fa-theater-masks text-blue-500 mr-2"></i>
+                        تئاترلند
+                    </a>
+                    <nav class="hidden md:flex space-x-8 space-x-reverse">
+                        <a href="#" class="nav-link font-medium hover:text-blue-400">صفحه اصلی</a>
+                        <a href="#" class="nav-link font-medium hover:text-blue-400">نمایش‌ها</a>
+                        <a href="#" class="nav-link font-medium hover:text-blue-400">سالن‌ها</a>
+                        <a href="#" class="nav-link font-medium hover:text-blue-400">اخبار</a>
+                        <a href="#" class="nav-link font-medium hover:text-blue-400">درباره ما</a>
+                    </nav>
+                </div>
+                <div class="flex items-center space-x-4 space-x-reverse">
+                    <a href="#" class="hidden md:block bg-blue-500 hover:bg-blue-600 text-white px-5 py-2 rounded-lg font-medium transition shadow-lg">
+                        ورود / ثبت‌نام
+                    </a>
+                    <button class="md:hidden text-2xl">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
             </div>
-          </div>
-        </header>
-      );
-    }
-
-    function Banner() {
-      console.log("Rendering Banner");
-      return (
-        <section className="relative bg-teal-800 text-white py-16">
-          <div
-            className="absolute inset-0 bg-cover bg-center opacity-50"
-            style={{ backgroundImage: "url('https://images.unsplash.com/photo-1519167758481-83f1af1f7b98?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80')" }}
-          ></div>
-          <div className="container mx-auto text-center relative z-10">
-            <h1 className="text-3xl md:text-4xl font-bold mb-4">بلیت تئاترهای مورد علاقه‌تان را بخرید</h1>
-            <p className="text-lg mb-6">تجربه‌ای متفاوت از خرید بلیت رویدادهای فرهنگی</p>
-            <button className="bg-teal-500 text-white px-6 py-3 rounded-lg hover:bg-teal-400">
-              خرید بلیت
-            </button>
-          </div>
-        </section>
-      );
-    }
-
-    function EventCard({ title, date, location, image }) {
-      console.log("Rendering EventCard:", title);
-      return (
-        <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
-          <img src={image} alt={title} className="w-full h-48 object-cover" />
-          <div className="p-4">
-            <h3 className="text-lg font-semibold mb-2">{title}</h3>
-            <p className="text-gray-600 text-sm mb-1">{date}</p>
-            <p className="text-gray-600 text-sm mb-4">{location}</p>
-            <button className="bg-teal-600 text-white px-4 py-2 rounded-lg hover:bg-teal-500 w-full">
-              خرید بلیت
-            </button>
-          </div>
         </div>
-      );
-    }
+    </header>
 
-    function FeaturedEvents() {
-      console.log("Rendering FeaturedEvents");
-      const events = [
-        {
-          title: "نمایش مکبث",
-          date: "۱۵ اردیبهشت ۱۴۰۴",
-          location: "تئاتر شهر، تهران",
-          image: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
-        },
-        {
-          title: "کنسرت موسیقی پاپ",
-          date: "۲۰ اردیبهشت ۱۴۰۴",
-          location: "تالار وحدت، تهران",
-          image: "https://images.unsplash.com/photo-1470229722913-7c0e2bbafd92?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
-        },
-        {
-          title: "نمایش کمدی عروسکی",
-          date: "۲۵ اردیبهشت ۱۴۰۴",
-          location: "سالن میلاد، تهران",
-          image: "https://images.unsplash.com/photo-1573495627361-d9b8794584f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
-        },
-        {
-          title: "کارگاه نمایشنامه‌نویسی",
-          date: "۳۰ اردیبهشت ۱۴۰۴",
-          location: "خانه هنرمندان، تهران",
-          image: "https://images.unsplash.com/photo-1503095396549-807759245f35?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
-        },
-      ];
-
-      return (
-        <section className="py-12 bg-gray-50">
-          <div className="container mx-auto px-6">
-            <h2 className="text-2xl font-bold text-center mb-8">رویدادهای پیشنهادی</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {events.map((event, index) => (
-                <EventCard key={index} {...event} />
-              ))}
+    <!-- Hero Section -->
+    <section class="relative h-[500px] bg-[url('https://images.unsplash.com/photo-1546483875-ad9014c88eba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')] bg-cover bg-center">
+        <div class="absolute inset-0 navy-gradient opacity-90"></div>
+        <div class="container mx-auto px-4 h-full flex flex-col justify-center relative z-10 text-white">
+            <div class="max-w-2xl">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4 leading-tight">تجربه‌ای منحصر به فرد از تئاترهای شهر</h1>
+                <p class="text-xl md:text-2xl mb-8 text-blue-100">بهترین نمایش‌های شهر را با قیمت مناسب و صندلی دلخواه رزرو کنید</p>
+                
+                <div class="search-box blur-effect p-6 rounded-xl max-w-3xl w-full">
+                    <div class="flex flex-col md:flex-row gap-4">
+                        <div class="flex-1 relative">
+                            <input type="text" placeholder="جستجوی نمایش، بازیگر یا کارگردان..." class="w-full py-4 px-5 bg-white/10 border border-white/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-white placeholder-blue-100">
+                            <i class="fas fa-search absolute left-5 top-1/2 transform -translate-y-1/2 text-blue-200"></i>
+                        </div>
+                        <button class="ticket-btn text-white px-8 py-4 rounded-xl font-bold transition whitespace-nowrap">
+                            <i class="fas fa-search ml-2"></i>
+                            جستجو
+                        </button>
+                    </div>
+                </div>
             </div>
-          </div>
-        </section>
-      );
-    }
-
-    function Footer() {
-      console.log("Rendering Footer");
-      return (
-        <footer className="bg-teal-800 text-white py-8">
-          <div className="container mx-auto px-6 text-center">
-            <h3 className="text-lg font-bold mb-4">تیکت تئاتر</h3>
-            <p className="mb-4">ایمیل: info@tickettheater.ir | تلفن: ۰۲۱-۱۲۳۴۵۶۷۸</p>
-            <p>© ۱۴۰۴ تیکت تئاتر. تمامی حقوق محفوظ است.</p>
-          </div>
-        </footer>
-      );
-    }
-
-    function App() {
-      console.log("Rendering App");
-      return (
-        <div>
-          <Header />
-          <Banner />
-          <FeaturedEvents />
-          <Footer />
         </div>
-      );
-    }
+    </section>
 
-    const root = ReactDOM.createRoot(document.getElementById('root'));
-    root.render(<App />);
-    console.log("App rendered");
-  </script>
+    <!-- Countdown Banner -->
+    <section class="bg-blue-600 text-white py-4">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="flex items-center mb-4 md:mb-0">
+                    <i class="fas fa-clock text-2xl mr-3"></i>
+                    <span class="font-bold text-lg">زمان باقیمانده تا شروع نمایش:</span>
+                </div>
+                <div class="flex space-x-4 space-x-reverse">
+                    <div class="countdown-item px-4 py-2 flex flex-col items-center">
+                        <span class="font-bold text-xl">۰۵</span>
+                        <span class="text-sm">روز</span>
+                    </div>
+                    <div class="countdown-item px-4 py-2 flex flex-col items-center">
+                        <span class="font-bold text-xl">۱۲</span>
+                        <span class="text-sm">ساعت</span>
+                    </div>
+                    <div class="countdown-item px-4 py-2 flex flex-col items-center">
+                        <span class="font-bold text-xl">۳۷</span>
+                        <span class="text-sm">دقیقه</span>
+                    </div>
+                    <div class="countdown-item px-4 py-2 flex flex-col items-center">
+                        <span class="font-bold text-xl">۲۲</span>
+                        <span class="text-sm">ثانیه</span>
+                    </div>
+                </div>
+                <button class="ticket-btn text-white px-6 py-3 rounded-lg font-bold mt-4 md:mt-0">
+                    رزرو سریع بلیت
+                    <i class="fas fa-arrow-left mr-2"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="py-8 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6">دسته‌بندی نمایش‌ها</h2>
+            <div class="flex overflow-x-auto pb-4 space-x-4 space-x-reverse scroll-hidden">
+                <button class="category-chip bg-blue-500 text-white px-6 py-3 rounded-full font-bold whitespace-nowrap shadow-lg">
+                    همه نمایش‌ها
+                </button>
+                <button class="category-chip bg-gray-100 hover:bg-gray-200 text-gray-800 px-6 py-3 rounded-full font-bold whitespace-nowrap">
+                    <i class="fas fa-drama-masks mr-2"></i>
+                    درام
+                </button>
+                <button class="category-chip bg-gray-100 hover:bg-gray-200 text-gray-800 px-6 py-3 rounded-full font-bold whitespace-nowrap">
+                    <i class="fas fa-laugh-squint mr-2"></i>
+                    کمدی
+                </button>
+                <button class="category-chip bg-gray-100 hover:bg-gray-200 text-gray-800 px-6 py-3 rounded-full font-bold whitespace-nowrap">
+                    <i class="fas fa-music mr-2"></i>
+                    موزیکال
+                </button>
+                <button class="category-chip bg-gray-100 hover:bg-gray-200 text-gray-800 px-6 py-3 rounded-full font-bold whitespace-nowrap">
+                    <i class="fas fa-puppet mr-2"></i>
+                    عروسکی
+                </button>
+                <button class="category-chip bg-gray-100 hover:bg-gray-200 text-gray-800 px-6 py-3 rounded-full font-bold whitespace-nowrap">
+                    <i class="fas fa-child mr-2"></i>
+                    کودک و نوجوان
+                </button>
+                <button class="category-chip bg-gray-100 hover:bg-gray-200 text-gray-800 px-6 py-3 rounded-full font-bold whitespace-nowrap">
+                    <i class="fas fa-flask mr-2"></i>
+                    تجربی
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Plays -->
+    <section class="py-12 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-800">نمایش‌های ویژه این هفته</h2>
+                <a href="#" class="text-blue-500 hover:text-blue-600 font-bold flex items-center">
+                    مشاهده همه
+                    <i class="fas fa-arrow-left mr-2"></i>
+                </a>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- Play Card 1 -->
+                <div class="play-card bg-white rounded-xl overflow-hidden shadow-xl transition duration-300 border border-gray-200">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1547153760-18fc86324498?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="نمایش" class="w-full h-56 object-cover">
+                        <div class="absolute top-3 left-3 bg-blue-500 text-white px-3 py-1 rounded-lg text-sm font-bold shadow-md">
+                            ویژه
+                        </div>
+                        <div class="absolute bottom-3 right-3 bg-white text-blue-500 px-3 py-1 rounded-lg text-sm font-bold shadow-md">
+                            <i class="fas fa-star mr-1"></i>
+                            ۴.۸
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold text-xl mb-2 text-gray-800">هملت</h3>
+                        <p class="text-gray-600 text-sm mb-3 flex items-center">
+                            <i class="fas fa-user-tie text-blue-500 ml-2"></i>
+                            کارگردان: محمد رضا اصلانی
+                        </p>
+                        <div class="flex justify-between items-center mt-4">
+                            <div class="text-blue-500 font-bold text-lg">۵۰,۰۰۰ تومان</div>
+                            <a href="#" class="ticket-btn text-white px-4 py-2 rounded-lg text-sm font-bold">
+                                خرید بلیت
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Play Card 2 -->
+                <div class="play-card bg-white rounded-xl overflow-hidden shadow-xl transition duration-300 border border-gray-200">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1514306190577-9f6f8ce4a2e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="نمایش" class="w-full h-56 object-cover">
+                        <div class="absolute bottom-3 right-3 bg-white text-blue-500 px-3 py-1 rounded-lg text-sm font-bold shadow-md">
+                            <i class="fas fa-star mr-1"></i>
+                            ۴.۶
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold text-xl mb-2 text-gray-800">شب هزار و یکم</h3>
+                        <p class="text-gray-600 text-sm mb-3 flex items-center">
+                            <i class="fas fa-user-tie text-blue-500 ml-2"></i>
+                            کارگردان: نیلوفر بیضایی
+                        </p>
+                        <div class="flex justify-between items-center mt-4">
+                            <div class="text-blue-500 font-bold text-lg">۷۰,۰۰۰ تومان</div>
+                            <a href="#" class="ticket-btn text-white px-4 py-2 rounded-lg text-sm font-bold">
+                                خرید بلیت
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Play Card 3 -->
+                <div class="play-card bg-white rounded-xl overflow-hidden shadow-xl transition duration-300 border border-gray-200">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1517511620798-cec17d428bc0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="نمایش" class="w-full h-56 object-cover">
+                        <div class="absolute top-3 left-3 bg-red-500 text-white px-3 py-1 rounded-lg text-sm font-bold shadow-md">
+                            آخرین فرصت
+                        </div>
+                        <div class="absolute bottom-3 right-3 bg-white text-blue-500 px-3 py-1 rounded-lg text-sm font-bold shadow-md">
+                            <i class="fas fa-star mr-1"></i>
+                            ۴.۹
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold text-xl mb-2 text-gray-800">مکبث</h3>
+                        <p class="text-gray-600 text-sm mb-3 flex items-center">
+                            <i class="fas fa-user-tie text-blue-500 ml-2"></i>
+                            کارگردان: حسین پارسایی
+                        </p>
+                        <div class="flex justify-between items-center mt-4">
+                            <div class="text-blue-500 font-bold text-lg">۶۰,۰۰۰ تومان</div>
+                            <a href="#" class="ticket-btn text-white px-4 py-2 rounded-lg text-sm font-bold">
+                                خرید بلیت
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Play Card 4 -->
+                <div class="play-card bg-white rounded-xl overflow-hidden shadow-xl transition duration-300 border border-gray-200">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="نمایش" class="w-full h-56 object-cover">
+                        <div class="absolute bottom-3 right-3 bg-white text-blue-500 px-3 py-1 rounded-lg text-sm font-bold shadow-md">
+                            <i class="fas fa-star mr-1"></i>
+                            ۴.۷
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold text-xl mb-2 text-gray-800">باغ آلبالو</h3>
+                        <p class="text-gray-600 text-sm mb-3 flex items-center">
+                            <i class="fas fa-user-tie text-blue-500 ml-2"></i>
+                            کارگردان: علی رفیعی
+                        </p>
+                        <div class="flex justify-between items-center mt-4">
+                            <div class="text-blue-500 font-bold text-lg">۴۵,۰۰۰ تومان</div>
+                            <a href="#" class="ticket-btn text-white px-4 py-2 rounded-lg text-sm font-bold">
+                                خرید بلیت
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upcoming Plays -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-800">نمایش‌های آینده نزدیک</h2>
+                <a href="#" class="text-blue-500 hover:text-blue-600 font-bold flex items-center">
+                    مشاهده همه
+                    <i class="fas fa-arrow-left mr-2"></i>
+                </a>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Upcoming Play 1 -->
+                <div class="theater-card bg-white rounded-xl p-6 flex gap-4 shadow-lg border border-gray-200">
+                    <div class="flex-shrink-0">
+                        <div class="date-badge bg-blue-500 text-white w-20 h-20 rounded-xl flex flex-col items-center justify-center shadow-md">
+                            <span class="font-bold text-2xl">۲۵</span>
+                            <span class="text-sm">مرداد</span>
+                        </div>
+                    </div>
+                    <div class="flex-grow">
+                        <h3 class="font-bold text-xl mb-2 text-gray-800">مرگ فروشنده</h3>
+                        <p class="text-gray-600 text-sm mb-2 flex items-center">
+                            <i class="fas fa-map-marker-alt text-blue-500 ml-2"></i>
+                            تئاتر شهر - سالن اصلی
+                        </p>
+                        <p class="text-gray-600 text-sm mb-4 flex items-center">
+                            <i class="fas fa-clock text-blue-500 ml-2"></i>
+                            ۱۹:۰۰ تا ۲۱:۳۰
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <div class="text-blue-500 font-bold">۵۰,۰۰۰ تومان</div>
+                            <a href="#" class="ticket-btn text-white px-4 py-2 rounded-lg text-sm font-bold">
+                                رزرو بلیت
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Upcoming Play 2 -->
+                <div class="theater-card bg-white rounded-xl p-6 flex gap-4 shadow-lg border border-gray-200">
+                    <div class="flex-shrink-0">
+                        <div class="date-badge bg-blue-500 text-white w-20 h-20 rounded-xl flex flex-col items-center justify-center shadow-md">
+                            <span class="font-bold text-2xl">۳۰</span>
+                            <span class="text-sm">مرداد</span>
+                        </div>
+                    </div>
+                    <div class="flex-grow">
+                        <h3 class="font-bold text-xl mb-2 text-gray-800">داستان یک شهر</h3>
+                        <p class="text-gray-600 text-sm mb-2 flex items-center">
+                            <i class="fas fa-map-marker-alt text-blue-500 ml-2"></i>
+                            تئاتر شهر - سالن چهارسو
+                        </p>
+                        <p class="text-gray-600 text-sm mb-4 flex items-center">
+                            <i class="fas fa-clock text-blue-500 ml-2"></i>
+                            ۱۸:۳۰ تا ۲۱:۰۰
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <div class="text-blue-500 font-bold">۷۰,۰۰۰ تومان</div>
+                            <a href="#" class="ticket-btn text-white px-4 py-2 rounded-lg text-sm font-bold">
+                                رزرو بلیت
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Upcoming Play 3 -->
+                <div class="theater-card bg-white rounded-xl p-6 flex gap-4 shadow-lg border border-gray-200">
+                    <div class="flex-shrink-0">
+                        <div class="date-badge bg-blue-500 text-white w-20 h-20 rounded-xl flex flex-col items-center justify-center shadow-md">
+                            <span class="font-bold text-2xl">۵</span>
+                            <span class="text-sm">شهریور</span>
+                        </div>
+                    </div>
+                    <div class="flex-grow">
+                        <h3 class="font-bold text-xl mb-2 text-gray-800">شاه لیر</h3>
+                        <p class="text-gray-600 text-sm mb-2 flex items-center">
+                            <i class="fas fa-map-marker-alt text-blue-500 ml-2"></i>
+                            تئاتر شهر - سالن قشقایی
+                        </p>
+                        <p class="text-gray-600 text-sm mb-4 flex items-center">
+                            <i class="fas fa-clock text-blue-500 ml-2"></i>
+                            ۲۰:۰۰ تا ۲۲:۳۰
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <div class="text-blue-500 font-bold">۶۰,۰۰۰ تومان</div>
+                            <a href="#" class="ticket-btn text-white px-4 py-2 rounded-lg text-sm font-bold">
+                                رزرو بلیت
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Theaters Section -->
+    <section class="py-12 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-8">سالن‌های تئاتر همکار</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Theater 1 -->
+                <div class="theater-card bg-white rounded-xl overflow-hidden shadow-xl border border-gray-200">
+                    <img src="https://images.unsplash.com/photo-1531058020387-3be344556be6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="تئاتر شهر" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl mb-3 text-gray-800 flex items-center">
+                            <i class="fas fa-theater-masks text-blue-500 ml-2"></i>
+                            تئاتر شهر
+                        </h3>
+                        <p class="text-gray-600 text-sm mb-4 flex items-start">
+                            <i class="fas fa-map-marker-alt text-blue-500 ml-2 mt-1"></i>
+                            تهران، خیابان انقلاب، خیابان فخر رازی، جنب پارک دانشجو
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center text-yellow-500">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span class="text-gray-600 text-sm mr-1">(۴.۷)</span>
+                            </div>
+                            <a href="#" class="text-blue-500 hover:text-blue-600 font-bold text-sm flex items-center">
+                                نمایش‌ها
+                                <i class="fas fa-arrow-left mr-2 text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Theater 2 -->
+                <div class="theater-card bg-white rounded-xl overflow-hidden shadow-xl border border-gray-200">
+                    <img src="https://images.unsplash.com/photo-1551232864-3f0890e580d9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="تئاتر سپهر" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl mb-3 text-gray-800 flex items-center">
+                            <i class="fas fa-theater-masks text-blue-500 ml-2"></i>
+                            تئاتر سپهر
+                        </h3>
+                        <p class="text-gray-600 text-sm mb-4 flex items-start">
+                            <i class="fas fa-map-marker-alt text-blue-500 ml-2 mt-1"></i>
+                            تهران، خیابان ولیعصر، بالاتر از میدان ولیعصر، جنب پارک ملت
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center text-yellow-500">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <span class="text-gray-600 text-sm mr-1">(۴.۲)</span>
+                            </div>
+                            <a href="#" class="text-blue-500 hover:text-blue-600 font-bold text-sm flex items-center">
+                                نمایش‌ها
+                                <i class="fas fa-arrow-left mr-2 text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Theater 3 -->
+                <div class="theater-card bg-white rounded-xl overflow-hidden shadow-xl border border-gray-200">
+                    <img src="https://images.unsplash.com/photo-1531058238282-9a1aaedf3fd2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="تئاتر باران" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl mb-3 text-gray-800 flex items-center">
+                            <i class="fas fa-theater-masks text-blue-500 ml-2"></i>
+                            تئاتر باران
+                        </h3>
+                        <p class="text-gray-600 text-sm mb-4 flex items-start">
+                            <i class="fas fa-map-marker-alt text-blue-500 ml-2 mt-1"></i>
+                            تهران، خیابان شریعتی، بالاتر از پل صدر، جنب پارک شریعتی
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center text-yellow-500">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span class="text-gray-600 text-sm mr-1">(۴.۹)</span>
+                            </div>
+                            <a href="#" class="text-blue-500 hover:text-blue-600 font-bold text-sm flex items-center">
+                                نمایش‌ها
+                                <i class="fas fa-arrow-left mr-2 text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-12 bg-blue-500 text-white">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div class="p-4">
+                    <div class="text-4xl font-bold mb-2">۱۵۰+</div>
+                    <div class="text-lg">نمایش فعال</div>
+                </div>
+                <div class="p-4">
+                    <div class="text-4xl font-bold mb-2">۵۰+</div>
+                    <div class="text-lg">سالن تئاتر</div>
+                </div>
+                <div class="p-4">
+                    <div class="text-4xl font-bold mb-2">۱۰۰,۰۰۰+</div>
+                    <div class="text-lg">بلیت فروخته شده</div>
+                </div>
+                <div class="p-4">
+                    <div class="text-4xl font-bold mb-2">۹۸%</div>
+                    <div class="text-lg">رضایت مشتریان</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto bg-gray-50 rounded-xl p-8 shadow-lg border border-gray-200">
+                <div class="text-center mb-8">
+                    <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2">در خبرنامه تئاترلند عضو شوید</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto">جدیدترین نمایش‌ها، تخفیف‌های ویژه و اخبار تئاتر را مستقیم در ایمیل خود دریافت کنید</p>
+                </div>
+                
+                <div class="flex flex-col md:flex-row gap-4 max-w-2xl mx-auto">
+                    <input type="email" placeholder="آدرس ایمیل شما" class="flex-1 py-4 px-5 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800">
+                    <button class="ticket-btn text-white px-8 py-4 rounded-xl font-bold transition whitespace-nowrap">
+                        عضویت در خبرنامه
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="navy-gradient text-white pt-16 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+                <div>
+                    <h3 class="text-xl font-bold mb-6 flex items-center">
+                        <i class="fas fa-theater-masks text-blue-400 mr-3"></i>
+                        تئاترلند
+                    </h3>
+                    <p class="text-gray-300 mb-6 leading-relaxed">پلتفرم خرید آنلاین بلیت تئاتر با ارائه بهترین نمایش‌های شهر و امکانات پیشرفته رزرو صندلی</p>
+                    <div class="flex space-x-5 space-x-reverse">
+                        <a href="#" class="text-gray-300 hover:text-blue-400 transition text-xl">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-blue-400 transition text-xl">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-blue-400 transition text-xl">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-blue-400 transition text-xl">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-6">لینک‌های مفید</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-300 hover:text-blue-400 transition flex items-center">
+                            <i class="fas fa-arrow-left text-xs ml-2"></i>
+                            صفحه اصلی
+                        </a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-blue-400 transition flex items-center">
+                            <i class="fas fa-arrow-left text-xs ml-2"></i>
+                            نمایش‌ها
+                        </a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-blue-400 transition flex items-center">
+                            <i class="fas fa-arrow-left text-xs ml-2"></i>
+                            سالن‌ها
+                        </a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-blue-400 transition flex items-center">
+                            <i class="fas fa-arrow-left text-xs ml-2"></i>
+                            اخبار و مقالات
+                        </a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-blue-400 transition flex items-center">
+                            <i class="fas fa-arrow-left text-xs ml-2"></i>
+                            تماس با ما
+                        </a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-6">راهنمایی</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-300 hover:text-blue-400 transition flex items-center">
+                            <i class="fas fa-arrow-left text-xs ml-2"></i>
+                            راهنمای خرید بلیت
+                        </a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-blue-400 transition flex items-center">
+                            <i class="fas fa-arrow-left text-xs ml-2"></i>
+                            پرسش‌های متداول
+                        </a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-blue-400 transition flex items-center">
+                            <i class="fas fa-arrow-left text-xs ml-2"></i>
+                            قوانین و مقررات
+                        </a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-blue-400 transition flex items-center">
+                            <i class="fas fa-arrow-left text-xs ml-2"></i>
+                            حریم خصوصی
+                        </a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-6">تماس با ما</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start text-gray-300">
+                            <i class="fas fa-map-marker-alt text-blue-400 ml-3 mt-1"></i>
+                            تهران، خیابان انقلاب، پلاک ۱۲۳، طبقه ۴
+                        </li>
+                        <li class="flex items-center text-gray-300">
+                            <i class="fas fa-phone text-blue-400 ml-3"></i>
+                            ۰۲۱-۱۲۳۴۵۶۷۸
+                        </li>
+                        <li class="flex items-center text-gray-300">
+                            <i class="fas fa-envelope text-blue-400 ml-3"></i>
+                            info@teatreland.com
+                        </li>
+                        <li class="flex items-center text-gray-300">
+                            <i class="fas fa-clock text-blue-400 ml-3"></i>
+                            همه روزه از ۹ صبح تا ۹ شب
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 text-sm mb-4 md:mb-0">© ۱۴۰۲ تمامی حقوق برای تئاترلند محفوظ است.</p>
+                    <div class="flex space-x-6 space-x-reverse">
+                        <img src="https://tiwall.com/images/payment/enamad.png" alt="enamad" class="h-12">
+                        <img src="https://tiwall.com/images/payment/samandehi.png" alt="samandehi" class="h-12">
+                        <img src="https://tiwall.com/images/payment/pasargad.png" alt="pasargad" class="h-12">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Action Button -->
+    <div class="fixed bottom-6 left-6 z-50">
+        <a href="#" class="ticket-btn text-white w-14 h-14 rounded-full flex items-center justify-center shadow-xl text-xl">
+            <i class="fas fa-ticket-alt"></i>
+        </a>
+    </div>
+
+    <script>
+        // Mobile menu toggle functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.querySelector('.md\\:hidden');
+            const navLinks = document.querySelector('nav');
+            
+            mobileMenuButton.addEventListener('click', function() {
+                navLinks.classList.toggle('hidden');
+                navLinks.classList.toggle('flex');
+                navLinks.classList.toggle('flex-col');
+                navLinks.classList.toggle('absolute');
+                navLinks.classList.toggle('top-16');
+                navLinks.classList.toggle('left-0');
+                navLinks.classList.toggle('right-0');
+                navLinks.classList.toggle('bg-[#0f172a]');
+                navLinks.classList.toggle('p-4');
+                navLinks.classList.toggle('shadow-xl');
+            });
+            
+            // Countdown timer
+            function updateCountdown() {
+                const daysElement = document.querySelector('.countdown-item:nth-child(1) span:first-child');
+                const hoursElement = document.querySelector('.countdown-item:nth-child(2) span:first-child');
+                const minutesElement = document.querySelector('.countdown-item:nth-child(3) span:first-child');
+                const secondsElement = document.querySelector('.countdown-item:nth-child(4) span:first-child');
+                
+                let days = parseInt(daysElement.textContent);
+                let hours = parseInt(hoursElement.textContent);
+                let minutes = parseInt(minutesElement.textContent);
+                let seconds = parseInt(secondsElement.textContent);
+                
+                seconds--;
+                
+                if (seconds < 0) {
+                    seconds = 59;
+                    minutes--;
+                    
+                    if (minutes < 0) {
+                        minutes = 59;
+                        hours--;
+                        
+                        if (hours < 0) {
+                            hours = 23;
+                            days--;
+                        }
+                    }
+                }
+                
+                daysElement.textContent = days.toString().padStart(2, '0');
+                hoursElement.textContent = hours.toString().padStart(2, '0');
+                minutesElement.textContent = minutes.toString().padStart(2, '0');
+                secondsElement.textContent = seconds.toString().padStart(2, '0');
+            }
+            
+            setInterval(updateCountdown, 1000);
+            
+            // Scroll to top button
+            window.addEventListener('scroll', function() {
+                const scrollToTopBtn = document.querySelector('.scroll-to-top');
+                if (window.pageYOffset > 300) {
+                    scrollToTopBtn.classList.remove('opacity-0', 'invisible');
+                    scrollToTopBtn.classList.add('opacity-100', 'visible');
+                } else {
+                    scrollToTopBtn.classList.remove('opacity-100', 'visible');
+                    scrollToTopBtn.classList.add('opacity-0', 'invisible');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
