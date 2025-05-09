@@ -109,6 +109,18 @@
       color: #1a365d;
     }
     
+    .city-tag {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      background-color: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.65rem;
+      z-index: 10;
+    }
+    
     @media (max-width: 768px) {
       .poster-grid {
         grid-template-columns: repeat(2, 1fr) !important;
@@ -128,6 +140,11 @@
       
       .poster-info {
         padding: 0.75rem;
+      }
+      
+      .city-tag {
+        font-size: 0.6rem;
+        padding: 0.2rem 0.4rem;
       }
     }
     
@@ -167,9 +184,6 @@
       <div class="category-tab">تئاتر</div>
       <div class="category-tab">نمایش خیابانی</div>
       <div class="category-tab">پرفورمنس</div>
-      <div class="category-tab">کنسرت</div>
-      <div class="category-tab">ورکشاپ</div>
-      <div class="category-tab">نمایشگاه</div>
     </div>
   </div>
 
@@ -185,18 +199,14 @@
         <div class="poster h-full">
           <div class="poster-image relative overflow-hidden">
             <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
+            <div class="city-tag">تهران</div>
           </div>
           
           <div class="poster-main-info bg-white p-3">
             <h3 class="text-sm font-medium mb-1">هملت</h3>
             <p class="text-xs text-gray-600 mb-1">کارگردان: بهرام بیضایی</p>
-            <p class="text-xs text-gray-500 flex items-center">
-              <i class="fas fa-map-marker-alt ml-1 text-xs"></i>
-              تئاتر شهر
-            </p>
             <div class="flex justify-between items-center mt-2">
               <p class="text-xs text-gray-500">۱۵ خرداد - ۲۰ تیر</p>
-              <span class="text-xs font-medium">120,000 تومان</span>
             </div>
           </div>
           
@@ -227,18 +237,14 @@
         <div class="poster h-full">
           <div class="poster-image relative overflow-hidden">
             <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
+            <div class="city-tag">تهران</div>
           </div>
           
           <div class="poster-main-info bg-white p-3">
             <h3 class="text-sm font-medium mb-1">شب هزار و یکم</h3>
             <p class="text-xs text-gray-600 mb-1">کارگردان: حمید امجد</p>
-            <p class="text-xs text-gray-500 flex items-center">
-              <i class="fas fa-map-marker-alt ml-1 text-xs"></i>
-              تالار وحدت
-            </p>
             <div class="flex justify-between items-center mt-2">
               <p class="text-xs text-gray-500">۲۰ خرداد - ۱۵ تیر</p>
-              <span class="text-xs font-medium">95,000 تومان</span>
             </div>
           </div>
           
@@ -268,18 +274,14 @@
         <div class="poster h-full">
           <div class="poster-image relative overflow-hidden">
             <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
+            <div class="city-tag">تهران</div>
           </div>
           
           <div class="poster-main-info bg-white p-3">
             <h3 class="text-sm font-medium mb-1">مکبث</h3>
             <p class="text-xs text-gray-600 mb-1">کارگردان: علی رفیعی</p>
-            <p class="text-xs text-gray-500 flex items-center">
-              <i class="fas fa-map-marker-alt ml-1 text-xs"></i>
-              تماشاخانه ایرانشهر
-            </p>
             <div class="flex justify-between items-center mt-2">
               <p class="text-xs text-gray-500">۱۰ خرداد - ۵ مرداد</p>
-              <span class="text-xs font-medium">150,000 تومان</span>
             </div>
           </div>
           
@@ -310,18 +312,14 @@
         <div class="poster h-full">
           <div class="poster-image relative overflow-hidden">
             <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
+            <div class="city-tag">اصفهان</div>
           </div>
           
           <div class="poster-main-info bg-white p-3">
             <h3 class="text-sm font-medium mb-1">باغ آلبالو</h3>
             <p class="text-xs text-gray-600 mb-1">کارگردان: محمد رحمانیان</p>
-            <p class="text-xs text-gray-500 flex items-center">
-              <i class="fas fa-map-marker-alt ml-1 text-xs"></i>
-              تئاتر شهر
-            </p>
             <div class="flex justify-between items-center mt-2">
               <p class="text-xs text-gray-500">۵ خرداد - ۳۰ تیر</p>
-              <span class="text-xs font-medium">80,000 تومان</span>
             </div>
           </div>
           
@@ -351,18 +349,14 @@
         <div class="poster h-full">
           <div class="poster-image relative overflow-hidden">
             <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
+            <div class="city-tag">مشهد</div>
           </div>
           
           <div class="poster-main-info bg-white p-3">
             <h3 class="text-sm font-medium mb-1">مرگ فروشنده</h3>
             <p class="text-xs text-gray-600 mb-1">کارگردان: هادی مرزبان</p>
-            <p class="text-xs text-gray-500 flex items-center">
-              <i class="fas fa-map-marker-alt ml-1 text-xs"></i>
-              تالار مولوی
-            </p>
             <div class="flex justify-between items-center mt-2">
               <p class="text-xs text-gray-500">۲۵ خرداد - ۲۰ مرداد</p>
-              <span class="text-xs font-medium">110,000 تومان</span>
             </div>
           </div>
           
