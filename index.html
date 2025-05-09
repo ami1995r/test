@@ -62,7 +62,7 @@
       left: 0;
       background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
       color: white;
-      padding: 1.5rem 1rem 1rem;
+      padding: 1rem 0.75rem 0.75rem;
       border-radius: 0 0 12px 12px;
       transform: translateY(100%);
       opacity: 0;
@@ -106,9 +106,9 @@
     .price-tag {
       background-color: #2d3748;
       color: white;
-      padding: 0.25rem 0.5rem;
+      padding: 0.2rem 0.4rem;
       border-radius: 4px;
-      font-size: 0.75rem;
+      font-size: 0.65rem;
     }
     
     .header-bg {
@@ -123,7 +123,7 @@
     }
     
     .poster-main-info {
-      padding: 1rem;
+      padding: 0.75rem;
       background-color: white;
       border-radius: 0 0 12px 12px;
     }
@@ -134,14 +134,27 @@
     
     .poster-title {
       transition: all 0.3s ease;
+      font-size: 0.875rem;
     }
     
     .poster:hover .poster-title {
       color: white;
       position: absolute;
-      top: 1rem;
-      right: 1rem;
+      top: 0.75rem;
+      right: 0.75rem;
       text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    
+    @media (max-width: 640px) {
+      .poster-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .poster-grid {
+        grid-template-columns: 1fr !important;
+      }
     }
   </style>
 </head>
@@ -187,44 +200,44 @@
   </div>
 
   <!-- Main Content -->
-  <main class="container mx-auto px-4 py-12">
+  <main class="container mx-auto px-4 py-8">
     <!-- Section Title -->
-    <h1 class="text-3xl font-light mb-12 text-right">نمایش‌های در حال اجرا</h1>
+    <h1 class="text-2xl font-light mb-8 text-right">نمایش‌های در حال اجرا</h1>
     
     <!-- Posters Grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+    <div class="poster-grid grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
       <!-- Poster 1 -->
       <div class="poster-container">
         <div class="poster h-full">
           <div class="poster-content">
             <div class="poster-image aspect-[2/3] relative overflow-hidden">
               <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
-              <div class="absolute top-0 left-0 p-3">
+              <div class="absolute top-0 left-0 p-2">
                 <span class="price-tag">120,000 تومان</span>
               </div>
-              <h3 class="poster-title text-lg font-medium absolute top-4 right-4 text-white opacity-0">هملت</h3>
+              <h3 class="poster-title text-sm font-medium absolute top-3 right-3 text-white opacity-0">هملت</h3>
             </div>
             
             <div class="poster-main-info">
-              <h3 class="text-lg font-medium mb-1">هملت</h3>
-              <p class="text-sm text-gray-600 mb-1">کارگردان: بهرام بیضایی</p>
+              <h3 class="text-sm font-medium mb-1">هملت</h3>
+              <p class="text-xs text-gray-600 mb-1">کارگردان: بهرام بیضایی</p>
               <p class="text-xs text-gray-500 flex items-center">
                 <i class="fas fa-map-marker-alt ml-1 text-xs"></i>
-                تئاتر شهر | سالن اصلی
+                تئاتر شهر
               </p>
               <p class="text-xs text-gray-500 mt-1">۱۵ خرداد - ۲۰ تیر</p>
             </div>
             
             <div class="poster-info">
-              <h3 class="text-lg font-medium mb-2">هملت</h3>
-              <p class="text-sm mb-1">کارگردان: بهرام بیضایی</p>
-              <p class="text-xs flex items-center mb-2">
+              <h3 class="text-sm font-medium mb-1">هملت</h3>
+              <p class="text-xs mb-1">کارگردان: بهرام بیضایی</p>
+              <p class="text-xs flex items-center mb-1">
                 <i class="fas fa-map-marker-alt ml-1 text-xs"></i>
-                تئاتر شهر | سالن اصلی
+                تئاتر شهر
               </p>
-              <p class="text-xs mb-3">۱۵ خرداد - ۲۰ تیر</p>
-              <p class="text-xs opacity-80">اجرای مدرن از شاهکار شکسپیر با طراحی صحنه‌ای خیره‌کننده</p>
-              <button class="mt-3 bg-white text-gray-800 text-xs py-1 px-3 rounded-full hover:bg-gray-100 transition">خرید بلیت</button>
+              <p class="text-xs mb-2">۱۵ خرداد - ۲۰ تیر</p>
+              <p class="text-xs opacity-80 leading-tight">اجرای مدرن از شاهکار شکسپیر با طراحی صحنه‌ای خیره‌کننده</p>
+              <button class="mt-2 bg-white text-gray-800 text-xs py-1 px-2 rounded-full hover:bg-gray-100 transition">خرید بلیت</button>
             </div>
           </div>
         </div>
@@ -236,32 +249,32 @@
           <div class="poster-content">
             <div class="poster-image aspect-[2/3] relative overflow-hidden">
               <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
-              <div class="absolute top-0 left-0 p-3">
+              <div class="absolute top-0 left-0 p-2">
                 <span class="price-tag">95,000 تومان</span>
               </div>
-              <h3 class="poster-title text-lg font-medium absolute top-4 right-4 text-white opacity-0">شب هزار و یکم</h3>
+              <h3 class="poster-title text-sm font-medium absolute top-3 right-3 text-white opacity-0">شب هزار و یکم</h3>
             </div>
             
             <div class="poster-main-info">
-              <h3 class="text-lg font-medium mb-1">شب هزار و یکم</h3>
-              <p class="text-sm text-gray-600 mb-1">کارگردان: حمید امجد</p>
+              <h3 class="text-sm font-medium mb-1">شب هزار و یکم</h3>
+              <p class="text-xs text-gray-600 mb-1">کارگردان: حمید امجد</p>
               <p class="text-xs text-gray-500 flex items-center">
                 <i class="fas fa-map-marker-alt ml-1 text-xs"></i>
-                تالار وحدت | سالن چارسو
+                تالار وحدت
               </p>
               <p class="text-xs text-gray-500 mt-1">۲۰ خرداد - ۱۵ تیر</p>
             </div>
             
             <div class="poster-info">
-              <h3 class="text-lg font-medium mb-2">شب هزار و یکم</h3>
-              <p class="text-sm mb-1">کارگردان: حمید امجد</p>
-              <p class="text-xs flex items-center mb-2">
+              <h3 class="text-sm font-medium mb-1">شب هزار و یکم</h3>
+              <p class="text-xs mb-1">کارگردان: حمید امجد</p>
+              <p class="text-xs flex items-center mb-1">
                 <i class="fas fa-map-marker-alt ml-1 text-xs"></i>
-                تالار وحدت | سالن چارسو
+                تالار وحدت
               </p>
-              <p class="text-xs mb-3">۲۰ خرداد - ۱۵ تیر</p>
-              <p class="text-xs opacity-80">تلفیقی از داستان‌های کهن ایرانی با اجرایی معاصر</p>
-              <button class="mt-3 bg-white text-gray-800 text-xs py-1 px-3 rounded-full hover:bg-gray-100 transition">خرید بلیت</button>
+              <p class="text-xs mb-2">۲۰ خرداد - ۱۵ تیر</p>
+              <p class="text-xs opacity-80 leading-tight">تلفیقی از داستان‌های کهن ایرانی با اجرایی معاصر</p>
+              <button class="mt-2 bg-white text-gray-800 text-xs py-1 px-2 rounded-full hover:bg-gray-100 transition">خرید بلیت</button>
             </div>
           </div>
         </div>
@@ -273,15 +286,15 @@
           <div class="poster-content">
             <div class="poster-image aspect-[2/3] relative overflow-hidden">
               <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
-              <div class="absolute top-0 left-0 p-3">
+              <div class="absolute top-0 left-0 p-2">
                 <span class="price-tag">150,000 تومان</span>
               </div>
-              <h3 class="poster-title text-lg font-medium absolute top-4 right-4 text-white opacity-0">مکبث</h3>
+              <h3 class="poster-title text-sm font-medium absolute top-3 right-3 text-white opacity-0">مکبث</h3>
             </div>
             
             <div class="poster-main-info">
-              <h3 class="text-lg font-medium mb-1">مکبث</h3>
-              <p class="text-sm text-gray-600 mb-1">کارگردان: علی رفیعی</p>
+              <h3 class="text-sm font-medium mb-1">مکبث</h3>
+              <p class="text-xs text-gray-600 mb-1">کارگردان: علی رفیعی</p>
               <p class="text-xs text-gray-500 flex items-center">
                 <i class="fas fa-map-marker-alt ml-1 text-xs"></i>
                 تماشاخانه ایرانشهر
@@ -290,15 +303,15 @@
             </div>
             
             <div class="poster-info">
-              <h3 class="text-lg font-medium mb-2">مکبث</h3>
-              <p class="text-sm mb-1">کارگردان: علی رفیعی</p>
-              <p class="text-xs flex items-center mb-2">
+              <h3 class="text-sm font-medium mb-1">مکبث</h3>
+              <p class="text-xs mb-1">کارگردان: علی رفیعی</p>
+              <p class="text-xs flex items-center mb-1">
                 <i class="fas fa-map-marker-alt ml-1 text-xs"></i>
                 تماشاخانه ایرانشهر
               </p>
-              <p class="text-xs mb-3">۱۰ خرداد - ۵ مرداد</p>
-              <p class="text-xs opacity-80">اجرایی خیره‌کننده از تراژدی قدرت و طمع</p>
-              <button class="mt-3 bg-white text-gray-800 text-xs py-1 px-3 rounded-full hover:bg-gray-100 transition">خرید بلیت</button>
+              <p class="text-xs mb-2">۱۰ خرداد - ۵ مرداد</p>
+              <p class="text-xs opacity-80 leading-tight">اجرایی خیره‌کننده از تراژدی قدرت و طمع</p>
+              <button class="mt-2 bg-white text-gray-800 text-xs py-1 px-2 rounded-full hover:bg-gray-100 transition">خرید بلیت</button>
             </div>
           </div>
         </div>
@@ -310,32 +323,32 @@
           <div class="poster-content">
             <div class="poster-image aspect-[2/3] relative overflow-hidden">
               <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
-              <div class="absolute top-0 left-0 p-3">
+              <div class="absolute top-0 left-0 p-2">
                 <span class="price-tag">80,000 تومان</span>
               </div>
-              <h3 class="poster-title text-lg font-medium absolute top-4 right-4 text-white opacity-0">باغ آلبالو</h3>
+              <h3 class="poster-title text-sm font-medium absolute top-3 right-3 text-white opacity-0">باغ آلبالو</h3>
             </div>
             
             <div class="poster-main-info">
-              <h3 class="text-lg font-medium mb-1">باغ آلبالو</h3>
-              <p class="text-sm text-gray-600 mb-1">کارگردان: محمد رحمانیان</p>
+              <h3 class="text-sm font-medium mb-1">باغ آلبالو</h3>
+              <p class="text-xs text-gray-600 mb-1">کارگردان: محمد رحمانیان</p>
               <p class="text-xs text-gray-500 flex items-center">
                 <i class="fas fa-map-marker-alt ml-1 text-xs"></i>
-                تئاتر شهر | سالن چهارسو
+                تئاتر شهر
               </p>
               <p class="text-xs text-gray-500 mt-1">۵ خرداد - ۳۰ تیر</p>
             </div>
             
             <div class="poster-info">
-              <h3 class="text-lg font-medium mb-2">باغ آلبالو</h3>
-              <p class="text-sm mb-1">کارگردان: محمد رحمانیان</p>
-              <p class="text-xs flex items-center mb-2">
+              <h3 class="text-sm font-medium mb-1">باغ آلبالو</h3>
+              <p class="text-xs mb-1">کارگردان: محمد رحمانیان</p>
+              <p class="text-xs flex items-center mb-1">
                 <i class="fas fa-map-marker-alt ml-1 text-xs"></i>
-                تئاتر شهر | سالن چهارسو
+                تئاتر شهر
               </p>
-              <p class="text-xs mb-3">۵ خرداد - ۳۰ تیر</p>
-              <p class="text-xs opacity-80">نمایشی از چخوف با نگاهی معاصر به مفاهیم تغییر و گذار</p>
-              <button class="mt-3 bg-white text-gray-800 text-xs py-1 px-3 rounded-full hover:bg-gray-100 transition">خرید بلیت</button>
+              <p class="text-xs mb-2">۵ خرداد - ۳۰ تیر</p>
+              <p class="text-xs opacity-80 leading-tight">نمایشی از چخوف با نگاهی معاصر به مفاهیم تغییر و گذار</p>
+              <button class="mt-2 bg-white text-gray-800 text-xs py-1 px-2 rounded-full hover:bg-gray-100 transition">خرید بلیت</button>
             </div>
           </div>
         </div>
@@ -347,15 +360,15 @@
           <div class="poster-content">
             <div class="poster-image aspect-[2/3] relative overflow-hidden">
               <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
-              <div class="absolute top-0 left-0 p-3">
+              <div class="absolute top-0 left-0 p-2">
                 <span class="price-tag">110,000 تومان</span>
               </div>
-              <h3 class="poster-title text-lg font-medium absolute top-4 right-4 text-white opacity-0">مرگ فروشنده</h3>
+              <h3 class="poster-title text-sm font-medium absolute top-3 right-3 text-white opacity-0">مرگ فروشنده</h3>
             </div>
             
             <div class="poster-main-info">
-              <h3 class="text-lg font-medium mb-1">مرگ فروشنده</h3>
-              <p class="text-sm text-gray-600 mb-1">کارگردان: هادی مرزبان</p>
+              <h3 class="text-sm font-medium mb-1">مرگ فروشنده</h3>
+              <p class="text-xs text-gray-600 mb-1">کارگردان: هادی مرزبان</p>
               <p class="text-xs text-gray-500 flex items-center">
                 <i class="fas fa-map-marker-alt ml-1 text-xs"></i>
                 تالار مولوی
@@ -364,15 +377,15 @@
             </div>
             
             <div class="poster-info">
-              <h3 class="text-lg font-medium mb-2">مرگ فروشنده</h3>
-              <p class="text-sm mb-1">کارگردان: هادی مرزبان</p>
-              <p class="text-xs flex items-center mb-2">
+              <h3 class="text-sm font-medium mb-1">مرگ فروشنده</h3>
+              <p class="text-xs mb-1">کارگردان: هادی مرزبان</p>
+              <p class="text-xs flex items-center mb-1">
                 <i class="fas fa-map-marker-alt ml-1 text-xs"></i>
                 تالار مولوی
               </p>
-              <p class="text-xs mb-3">۲۵ خرداد - ۲۰ مرداد</p>
-              <p class="text-xs opacity-80">نمایشی تأثیرگذار از آرتور میلر درباره رویاهای آمریکایی</p>
-              <button class="mt-3 bg-white text-gray-800 text-xs py-1 px-3 rounded-full hover:bg-gray-100 transition">خرید بلیت</button>
+              <p class="text-xs mb-2">۲۵ خرداد - ۲۰ مرداد</p>
+              <p class="text-xs opacity-80 leading-tight">نمایشی تأثیرگذار از آرتور میلر درباره رویاهای آمریکایی</p>
+              <button class="mt-2 bg-white text-gray-800 text-xs py-1 px-2 rounded-full hover:bg-gray-100 transition">خرید بلیت</button>
             </div>
           </div>
         </div>
@@ -384,15 +397,15 @@
           <div class="poster-content">
             <div class="poster-image aspect-[2/3] relative overflow-hidden">
               <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
-              <div class="absolute top-0 left-0 p-3">
+              <div class="absolute top-0 left-0 p-2">
                 <span class="price-tag">75,000 تومان</span>
               </div>
-              <h3 class="poster-title text-lg font-medium absolute top-4 right-4 text-white opacity-0">دون ژوان</h3>
+              <h3 class="poster-title text-sm font-medium absolute top-3 right-3 text-white opacity-0">دون ژوان</h3>
             </div>
             
             <div class="poster-main-info">
-              <h3 class="text-lg font-medium mb-1">دون ژوان</h3>
-              <p class="text-sm text-gray-600 mb-1">کارگردان: امیررضا کوهستانی</p>
+              <h3 class="text-sm font-medium mb-1">دون ژوان</h3>
+              <p class="text-xs text-gray-600 mb-1">کارگردان: امیررضا کوهستانی</p>
               <p class="text-xs text-gray-500 flex items-center">
                 <i class="fas fa-map-marker-alt ml-1 text-xs"></i>
                 تماشاخانه سپند
@@ -401,15 +414,15 @@
             </div>
             
             <div class="poster-info">
-              <h3 class="text-lg font-medium mb-2">دون ژوان</h3>
-              <p class="text-sm mb-1">کارگردان: امیررضا کوهستانی</p>
-              <p class="text-xs flex items-center mb-2">
+              <h3 class="text-sm font-medium mb-1">دون ژوان</h3>
+              <p class="text-xs mb-1">کارگردان: امیررضا کوهستانی</p>
+              <p class="text-xs flex items-center mb-1">
                 <i class="fas fa-map-marker-alt ml-1 text-xs"></i>
                 تماشاخانه سپند
               </p>
-              <p class="text-xs mb-3">۱۲ خرداد - ۱۰ تیر</p>
-              <p class="text-xs opacity-80">کمدی‌ای درباره عشق، فریب و سرنوشت</p>
-              <button class="mt-3 bg-white text-gray-800 text-xs py-1 px-3 rounded-full hover:bg-gray-100 transition">خرید بلیت</button>
+              <p class="text-xs mb-2">۱۲ خرداد - ۱۰ تیر</p>
+              <p class="text-xs opacity-80 leading-tight">کمدی‌ای درباره عشق، فریب و سرنوشت</p>
+              <button class="mt-2 bg-white text-gray-800 text-xs py-1 px-2 rounded-full hover:bg-gray-100 transition">خرید بلیت</button>
             </div>
           </div>
         </div>
@@ -421,32 +434,32 @@
           <div class="poster-content">
             <div class="poster-image aspect-[2/3] relative overflow-hidden">
               <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
-              <div class="absolute top-0 left-0 p-3">
+              <div class="absolute top-0 left-0 p-2">
                 <span class="price-tag">130,000 تومان</span>
               </div>
-              <h3 class="poster-title text-lg font-medium absolute top-4 right-4 text-white opacity-0">شاه لیر</h3>
+              <h3 class="poster-title text-sm font-medium absolute top-3 right-3 text-white opacity-0">شاه لیر</h3>
             </div>
             
             <div class="poster-main-info">
-              <h3 class="text-lg font-medium mb-1">شاه لیر</h3>
-              <p class="text-sm text-gray-600 mb-1">کارگردان: آتیلا پسیانی</p>
+              <h3 class="text-sm font-medium mb-1">شاه لیر</h3>
+              <p class="text-xs text-gray-600 mb-1">کارگردان: آتیلا پسیانی</p>
               <p class="text-xs text-gray-500 flex items-center">
                 <i class="fas fa-map-marker-alt ml-1 text-xs"></i>
-                تئاتر شهر | سالن اصلی
+                تئاتر شهر
               </p>
               <p class="text-xs text-gray-500 mt-1">۱۸ خرداد - ۱۵ مرداد</p>
             </div>
             
             <div class="poster-info">
-              <h3 class="text-lg font-medium mb-2">شاه لیر</h3>
-              <p class="text-sm mb-1">کارگردان: آتیلا پسیانی</p>
-              <p class="text-xs flex items-center mb-2">
+              <h3 class="text-sm font-medium mb-1">شاه لیر</h3>
+              <p class="text-xs mb-1">کارگردان: آتیلا پسیانی</p>
+              <p class="text-xs flex items-center mb-1">
                 <i class="fas fa-map-marker-alt ml-1 text-xs"></i>
-                تئاتر شهر | سالن اصلی
+                تئاتر شهر
               </p>
-              <p class="text-xs mb-3">۱۸ خرداد - ۱۵ مرداد</p>
-              <p class="text-xs opacity-80">تراژدی شکسپیر درباره قدرت، خیانت و جنون</p>
-              <button class="mt-3 bg-white text-gray-800 text-xs py-1 px-3 rounded-full hover:bg-gray-100 transition">خرید بلیت</button>
+              <p class="text-xs mb-2">۱۸ خرداد - ۱۵ مرداد</p>
+              <p class="text-xs opacity-80 leading-tight">تراژدی شکسپیر درباره قدرت، خیانت و جنون</p>
+              <button class="mt-2 bg-white text-gray-800 text-xs py-1 px-2 rounded-full hover:bg-gray-100 transition">خرید بلیت</button>
             </div>
           </div>
         </div>
@@ -458,15 +471,15 @@
           <div class="poster-content">
             <div class="poster-image aspect-[2/3] relative overflow-hidden">
               <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
-              <div class="absolute top-0 left-0 p-3">
-                <span class="price-tag">90,000 تومان</span>
+              <div class="absolute top-0 left-0 p-2">
+                <span class="price-t tag">90,000 تومان</span>
               </div>
-              <h3 class="poster-title text-lg font-medium absolute top-4 right-4 text-white opacity-0">کرگدن</h3>
+              <h3 class="poster-title text-sm font-medium absolute top-3 right-3 text-white opacity-0">کرگدن</h3>
             </div>
             
             <div class="poster-main-info">
-              <h3 class="text-lg font-medium mb-1">کرگدن</h3>
-              <p class="text-sm text-gray-600 mb-1">کارگردان: مسعود رایگان</p>
+              <h3 class="text-sm font-medium mb-1">کرگدن</h3>
+              <p class="text-xs text-gray-600 mb-1">کارگردان: مسعود رایگان</p>
               <p class="text-xs text-gray-500 flex items-center">
                 <i class="fas fa-map-marker-alt ml-1 text-xs"></i>
                 تالار حافظ
@@ -475,15 +488,15 @@
             </div>
             
             <div class="poster-info">
-              <h3 class="text-lg font-medium mb-2">کرگدن</h3>
-              <p class="text-sm mb-1">کارگردان: مسعود رایگان</p>
-              <p class="text-xs flex items-center mb-2">
+              <h3 class="text-sm font-medium mb-1">کرگدن</h3>
+              <p class="text-xs mb-1">کارگردان: مسعود رایگان</p>
+              <p class="text-xs flex items-center mb-1">
                 <i class="fas fa-map-marker-alt ml-1 text-xs"></i>
                 تالار حافظ
               </p>
-              <p class="text-xs mb-3">۸ خرداد - ۵ تیر</p>
-              <p class="text-xs opacity-80">نمایشی پوچ‌گرایانه از یونسکو درباره هویت و تبدیل شدن</p>
-              <button class="mt-3 bg-white text-gray-800 text-xs py-1 px-3 rounded-full hover:bg-gray-100 transition">خرید بلیت</button>
+              <p class="text-xs mb-2">۸ خرداد - ۵ تیر</p>
+              <p class="text-xs opacity-80 leading-tight">نمایشی پوچ‌گرایانه از یونسکو درباره هویت و تبدیل شدن</p>
+              <button class="mt-2 bg-white text-gray-800 text-xs py-1 px-2 rounded-full hover:bg-gray-100 transition">خرید بلیت</button>
             </div>
           </div>
         </div>
@@ -492,7 +505,7 @@
   </main>
 
   <!-- Minimal Footer -->
-  <footer class="border-t border-gray-200 py-8">
+  <footer class="border-t border-gray-200 py-6">
     <div class="container mx-auto px-4 text-center">
       <p class="text-xs text-gray-500">© ۱۴۰۳ | تمامی حقوق محفوظ است</p>
     </div>
