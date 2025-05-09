@@ -19,7 +19,7 @@
       transition: all 0.3s ease;
     }
     
-    .nav-item:after {
+    .nav-item::after {
       content: '';
       position: absolute;
       width: 0;
@@ -30,7 +30,7 @@
       transition: width 0.3s ease;
     }
     
-    .nav-item:hover:after {
+    .nav-item:hover::after {
       width: 100%;
     }
     
@@ -154,15 +154,42 @@
       text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     }
     
+    .mobile-info {
+      display: none;
+    }
+    
     @media (max-width: 768px) {
       .poster-grid {
         grid-template-columns: repeat(2, 1fr) !important;
+      }
+      
+      .poster-info {
+        display: none !important;
+      }
+      
+      .mobile-info {
+        display: block;
+        padding: 0.5rem;
+        background-color: white;
+        border-radius: 0 0 12px 12px;
+      }
+      
+      .price-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 0.5rem;
+      }
+      
+      .poster:hover {
+        transform: none;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
       }
     }
     
     @media (max-width: 480px) {
       .poster-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
+        grid-template-columns: repeat(1, 1fr) !important;
       }
       
       .poster-info {
@@ -172,6 +199,64 @@
       .poster-info p {
         font-size: 0.7rem;
       }
+    }
+    
+    /* Minimal category tabs */
+    .category-tabs {
+      display: flex;
+      justify-content: center;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 0.5rem;
+    }
+    
+    .category-tab {
+      padding: 0.5rem 1rem;
+      margin: 0 0.5rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border-bottom: 2px solid transparent;
+      font-weight: 500;
+      color: #4a5568;
+    }
+    
+    .category-tab.active {
+      border-bottom: 2px solid #1a365d;
+      color: #1a365d;
+    }
+    
+    .category-tab:hover {
+      color: #1a365d;
+    }
+    
+    /* Ultra minimal icon nav */
+    .minimal-icon-nav {
+      display: flex;
+      justify-content: center;
+      padding: 1rem 0;
+      background-color: white;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+    
+    .minimal-icon-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 1.5rem;
+      color: #4a5568;
+      transition: all 0.3s ease;
+    }
+    
+    .minimal-icon-item i {
+      font-size: 1.25rem;
+      margin-bottom: 0.25rem;
+    }
+    
+    .minimal-icon-item span {
+      font-size: 0.7rem;
+    }
+    
+    .minimal-icon-item.active, .minimal-icon-item:hover {
+      color: #1a365d;
     }
   </style>
 </head>
@@ -192,34 +277,42 @@
     </div>
   </header>
 
-  <!-- Icon Navigation -->
-  <div class="border-b border-gray-200 py-4">
-    <div class="container mx-auto px-4">
-      <nav class="flex justify-center space-x-6 md:space-x-12">
-        <a href="#" class="icon-nav-item">
-          <i class="fas fa-theater-masks text-xl mb-1"></i>
-          <span class="text-xs">نمایش</span>
-        </a>
-        <a href="#" class="icon-nav-item">
-          <i class="fas fa-music text-xl mb-1"></i>
-          <span class="text-xs">کنسرت</span>
-        </a>
-        <a href="#" class="icon-nav-item">
-          <i class="fas fa-chalkboard-teacher text-xl mb-1"></i>
-          <span class="text-xs">ورکشاپ</span>
-        </a>
-        <a href="#" class="icon-nav-item">
-          <i class="fas fa-paint-brush text-xl mb-1"></i>
-          <span class="text-xs">نمایشگاه</span>
-        </a>
-      </nav>
+  <!-- Minimal Icon Navigation -->
+  <div class="minimal-icon-nav">
+    <div class="flex">
+      <div class="minimal-icon-item active">
+        <i class="fas fa-theater-masks"></i>
+        <span>نمایش</span>
+      </div>
+      <div class="minimal-icon-item">
+        <i class="fas fa-music"></i>
+        <span>کنسرت</span>
+      </div>
+      <div class="minimal-icon-item">
+        <i class="fas fa-chalkboard-teacher"></i>
+        <span>ورکشاپ</span>
+      </div>
+      <div class="minimal-icon-item">
+        <i class="fas fa-paint-brush"></i>
+        <span>نمایشگاه</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Category Tabs -->
+  <div class="container mx-auto px-4 py-4">
+    <div class="category-tabs">
+      <div class="category-tab active">همه</div>
+      <div class="category-tab">تئاتر</div>
+      <div class="category-tab">نمایش خیابانی</div>
+      <div class="category-tab">پرفورمنس</div>
     </div>
   </div>
 
   <!-- Main Content -->
-  <main class="container mx-auto px-4 py-8">
+  <main class="container mx-auto px-4 py-4">
     <!-- Section Title -->
-    <h1 class="text-2xl font-light mb-8 text-right">نمایش‌های در حال اجرا</h1>
+    <h1 class="text-xl font-medium mb-6 text-right">نمایش‌های در حال اجرا</h1>
     
     <!-- Posters Grid -->
     <div class="poster-grid grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
@@ -240,6 +333,13 @@
                 تئاتر شهر
               </p>
               <p class="text-xs text-gray-500 mt-1">۱۵ خرداد - ۲۰ تیر</p>
+            </div>
+            
+            <div class="mobile-info">
+              <div class="price-row">
+                <span class="text-xs font-medium">120,000 تومان</span>
+                <span class="discount-tag">20% تخفیف</span>
+              </div>
             </div>
             
             <div class="poster-info">
@@ -280,6 +380,12 @@
               <p class="text-xs text-gray-500 mt-1">۲۰ خرداد - ۱۵ تیر</p>
             </div>
             
+            <div class="mobile-info">
+              <div class="price-row">
+                <span class="text-xs font-medium">95,000 تومان</span>
+              </div>
+            </div>
+            
             <div class="poster-info">
               <h3 class="text-sm font-medium mb-1">شب هزار و یکم</h3>
               <p class="text-xs mb-1">کارگردان: حمید امجد</p>
@@ -315,6 +421,13 @@
                 تماشاخانه ایرانشهر
               </p>
               <p class="text-xs text-gray-500 mt-1">۱۰ خرداد - ۵ مرداد</p>
+            </div>
+            
+            <div class="mobile-info">
+              <div class="price-row">
+                <span class="text-xs font-medium">150,000 تومان</span>
+                <span class="discount-tag">15% تخفیف</span>
+              </div>
             </div>
             
             <div class="poster-info">
@@ -355,6 +468,12 @@
               <p class="text-xs text-gray-500 mt-1">۵ خرداد - ۳۰ تیر</p>
             </div>
             
+            <div class="mobile-info">
+              <div class="price-row">
+                <span class="text-xs font-medium">80,000 تومان</span>
+              </div>
+            </div>
+            
             <div class="poster-info">
               <h3 class="text-sm font-medium mb-1">باغ آلبالو</h3>
               <p class="text-xs mb-1">کارگردان: محمد رحمانیان</p>
@@ -392,6 +511,13 @@
               <p class="text-xs text-gray-500 mt-1">۲۵ خرداد - ۲۰ مرداد</p>
             </div>
             
+            <div class="mobile-info">
+              <div class="price-row">
+                <span class="text-xs font-medium">110,000 تومان</span>
+                <span class="discount-tag">10% تخفیف</span>
+              </div>
+            </div>
+            
             <div class="poster-info">
               <h3 class="text-sm font-medium mb-1">مرگ فروشنده</h3>
               <p class="text-xs mb-1">کارگردان: هادی مرزبان</p>
@@ -419,5 +545,33 @@
       <p class="text-xs text-gray-500">© ۱۴۰۳ | تمامی حقوق محفوظ است</p>
     </div>
   </footer>
+
+  <script>
+    // Mobile info toggle
+    document.querySelectorAll('.poster').forEach(poster => {
+      poster.addEventListener('click', function() {
+        if (window.innerWidth <= 768) {
+          const info = this.querySelector('.mobile-info');
+          info.style.display = info.style.display === 'none' ? 'block' : 'none';
+        }
+      });
+    });
+    
+    // Category tabs functionality
+    document.querySelectorAll('.category-tab').forEach(tab => {
+      tab.addEventListener('click', function() {
+        document.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+    
+    // Icon nav functionality
+    document.querySelectorAll('.minimal-icon-item').forEach(item => {
+      item.addEventListener('click', function() {
+        document.querySelectorAll('.minimal-icon-item').forEach(i => i.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+  </script>
 </body>
 </html>
