@@ -14,93 +14,45 @@
       background-color: #f8fafc;
     }
     
-    .nav-item {
-      position: relative;
-      transition: all 0.3s ease;
-    }
-    
-    .nav-item::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 1px;
-      bottom: -2px;
-      right: 0;
-      background-color: #000000;
-      transition: width 0.3s ease;
-    }
-    
-    .nav-item:hover::after {
-      width: 100%;
-    }
-    
     .poster-container {
       perspective: 1000px;
     }
     
     .poster {
-      transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
-      transform-style: preserve-3d;
+      transition: all 0.3s ease;
       border-radius: 12px;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    }
-    
-    .poster:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+      position: relative;
+      overflow: hidden;
     }
     
     .poster-image {
       border-radius: 12px 12px 0 0;
       transition: all 0.5s ease;
+      aspect-ratio: 2/3;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     }
     
     .poster-info {
       position: absolute;
-      bottom: 0;
+      top: 0;
       right: 0;
+      bottom: 0;
       left: 0;
-      background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+      background: rgba(0, 0, 0, 0.85);
       color: white;
-      padding: 1rem 0.75rem 0.75rem;
-      border-radius: 0 0 12px 12px;
-      transform: translateY(100%);
+      padding: 1rem;
       opacity: 0;
       transition: all 0.3s ease;
-    }
-    
-    .poster:hover .poster-info {
-      transform: translateY(0);
-      opacity: 1;
-    }
-    
-    .icon-nav-item {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      transition: all 0.3s ease;
-      width: 60px;
+      justify-content: space-between;
+      border-radius: 12px;
     }
     
-    .icon-nav-item:hover {
-      transform: translateY(-2px);
-    }
-    
-    .auth-btn {
-      border: 1px solid #fff;
-      padding: 0.25rem 1rem;
-      border-radius: 4px;
-      transition: all 0.3s ease;
-      color: white;
-    }
-    
-    .auth-btn:hover {
-      background-color: #fff;
-      color: #1a365d;
-    }
-    
-    .poster-image {
-      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    .poster:hover .poster-info,
+    .poster.active .poster-info {
+      opacity: 1;
     }
     
     .price-tag {
@@ -124,99 +76,28 @@
       background-color: #1a365d;
     }
     
-    .poster-content {
-      position: relative;
-      overflow: hidden;
-      border-radius: 12px;
-      height: 100%;
-    }
-    
-    .poster-main-info {
-      padding: 0.75rem;
-      background-color: white;
-      border-radius: 0 0 12px 12px;
-    }
-    
-    .poster:hover .poster-main-info {
-      opacity: 0;
-    }
-    
-    .poster-title {
-      transition: all 0.3s ease;
-      font-size: 0.875rem;
-    }
-    
-    .poster:hover .poster-title {
-      color: white;
-      position: absolute;
-      top: 0.75rem;
-      right: 0.75rem;
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    }
-    
-    .mobile-info {
-      display: none;
-    }
-    
-    @media (max-width: 768px) {
-      .poster-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
-      }
-      
-      .poster-info {
-        display: none !important;
-      }
-      
-      .mobile-info {
-        display: block;
-        padding: 0.5rem;
-        background-color: white;
-        border-radius: 0 0 12px 12px;
-      }
-      
-      .price-row {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-top: 0.5rem;
-      }
-      
-      .poster:hover {
-        transform: none;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-      }
-    }
-    
-    @media (max-width: 480px) {
-      .poster-grid {
-        grid-template-columns: repeat(1, 1fr) !important;
-      }
-      
-      .poster-info {
-        padding: 0.5rem;
-      }
-      
-      .poster-info p {
-        font-size: 0.7rem;
-      }
-    }
-    
-    /* Minimal category tabs */
     .category-tabs {
       display: flex;
-      justify-content: center;
-      border-bottom: 1px solid #e2e8f0;
+      overflow-x: auto;
       padding-bottom: 0.5rem;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    
+    .category-tabs::-webkit-scrollbar {
+      display: none;
     }
     
     .category-tab {
       padding: 0.5rem 1rem;
-      margin: 0 0.5rem;
+      margin: 0 0.25rem;
       cursor: pointer;
       transition: all 0.3s ease;
       border-bottom: 2px solid transparent;
       font-weight: 500;
       color: #4a5568;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
     
     .category-tab.active {
@@ -228,41 +109,43 @@
       color: #1a365d;
     }
     
-    /* Ultra minimal icon nav */
-    .minimal-icon-nav {
-      display: flex;
-      justify-content: center;
-      padding: 1rem 0;
-      background-color: white;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    @media (max-width: 768px) {
+      .poster-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+      }
+      
+      .poster-main-info {
+        padding: 0.5rem;
+      }
+      
+      .poster-title {
+        font-size: 0.8rem;
+      }
+      
+      .poster-info p {
+        font-size: 0.7rem;
+      }
+      
+      .poster-info {
+        padding: 0.75rem;
+      }
     }
     
-    .minimal-icon-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 0 1.5rem;
-      color: #4a5568;
-      transition: all 0.3s ease;
-    }
-    
-    .minimal-icon-item i {
-      font-size: 1.25rem;
-      margin-bottom: 0.25rem;
-    }
-    
-    .minimal-icon-item span {
-      font-size: 0.7rem;
-    }
-    
-    .minimal-icon-item.active, .minimal-icon-item:hover {
-      color: #1a365d;
+    @media (max-width: 480px) {
+      .poster-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+      }
+      
+      .category-tab {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.85rem;
+      }
     }
   </style>
 </head>
 <body class="text-gray-900">
-  <!-- Ultra Minimal Header -->
-  <header class="header-bg text-white h-16 flex items-center">
+  <!-- Minimal Header -->
+  <header class="header-bg text-white h-16 flex items-center sticky top-0 z-10">
     <div class="container mx-auto px-4">
       <div class="flex justify-between items-center">
         <!-- Logo -->
@@ -277,35 +160,16 @@
     </div>
   </header>
 
-  <!-- Minimal Icon Navigation -->
-  <div class="minimal-icon-nav">
-    <div class="flex">
-      <div class="minimal-icon-item active">
-        <i class="fas fa-theater-masks"></i>
-        <span>نمایش</span>
-      </div>
-      <div class="minimal-icon-item">
-        <i class="fas fa-music"></i>
-        <span>کنسرت</span>
-      </div>
-      <div class="minimal-icon-item">
-        <i class="fas fa-chalkboard-teacher"></i>
-        <span>ورکشاپ</span>
-      </div>
-      <div class="minimal-icon-item">
-        <i class="fas fa-paint-brush"></i>
-        <span>نمایشگاه</span>
-      </div>
-    </div>
-  </div>
-
   <!-- Category Tabs -->
-  <div class="container mx-auto px-4 py-4">
+  <div class="container mx-auto px-4 py-4 sticky top-16 bg-white z-10 shadow-sm">
     <div class="category-tabs">
       <div class="category-tab active">همه</div>
       <div class="category-tab">تئاتر</div>
       <div class="category-tab">نمایش خیابانی</div>
       <div class="category-tab">پرفورمنس</div>
+      <div class="category-tab">کنسرت</div>
+      <div class="category-tab">ورکشاپ</div>
+      <div class="category-tab">نمایشگاه</div>
     </div>
   </div>
 
@@ -319,43 +183,40 @@
       <!-- Poster 1 -->
       <div class="poster-container">
         <div class="poster h-full">
-          <div class="poster-content">
-            <div class="poster-image aspect-[2/3] relative overflow-hidden">
-              <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
-              <h3 class="poster-title text-sm font-medium absolute top-3 right-3 text-white opacity-0">هملت</h3>
+          <div class="poster-image relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
+          </div>
+          
+          <div class="poster-main-info bg-white p-3">
+            <h3 class="text-sm font-medium mb-1">هملت</h3>
+            <p class="text-xs text-gray-600 mb-1">کارگردان: بهرام بیضایی</p>
+            <p class="text-xs text-gray-500 flex items-center">
+              <i class="fas fa-map-marker-alt ml-1 text-xs"></i>
+              تئاتر شهر
+            </p>
+            <div class="flex justify-between items-center mt-2">
+              <p class="text-xs text-gray-500">۱۵ خرداد - ۲۰ تیر</p>
+              <span class="text-xs font-medium">120,000 تومان</span>
             </div>
-            
-            <div class="poster-main-info">
-              <h3 class="text-sm font-medium mb-1">هملت</h3>
-              <p class="text-xs text-gray-600 mb-1">کارگردان: بهرام بیضایی</p>
-              <p class="text-xs text-gray-500 flex items-center">
-                <i class="fas fa-map-marker-alt ml-1 text-xs"></i>
-                تئاتر شهر
-              </p>
-              <p class="text-xs text-gray-500 mt-1">۱۵ خرداد - ۲۰ تیر</p>
-            </div>
-            
-            <div class="mobile-info">
-              <div class="price-row">
-                <span class="text-xs font-medium">120,000 تومان</span>
-                <span class="discount-tag">20% تخفیف</span>
-              </div>
-            </div>
-            
-            <div class="poster-info">
-              <h3 class="text-sm font-medium mb-1">هملت</h3>
+          </div>
+          
+          <div class="poster-info">
+            <div>
+              <h3 class="text-sm font-medium mb-2">هملت</h3>
               <p class="text-xs mb-1">کارگردان: بهرام بیضایی</p>
               <p class="text-xs flex items-center mb-1">
                 <i class="fas fa-map-marker-alt ml-1 text-xs"></i>
                 تئاتر شهر
               </p>
               <p class="text-xs mb-2">۱۵ خرداد - ۲۰ تیر</p>
-              <p class="text-xs opacity-80 leading-tight">اجرای مدرن از شاهکار شکسپیر با طراحی صحنه‌ای خیره‌کننده</p>
-              <div class="flex items-center justify-between mt-2">
+              <p class="text-xs opacity-80 leading-tight mb-3">اجرای مدرن از شاهکار شکسپیر با طراحی صحنه‌ای خیره‌کننده</p>
+            </div>
+            <div>
+              <div class="flex items-center justify-between mb-2">
                 <span class="text-xs font-medium">120,000 تومان</span>
                 <span class="discount-tag">20% تخفیف</span>
               </div>
-              <button class="w-full mt-2 bg-white text-gray-800 text-xs py-1 px-2 rounded-full hover:bg-gray-100 transition">خرید بلیت</button>
+              <button class="w-full bg-white text-gray-800 text-xs py-2 px-3 rounded-full hover:bg-gray-100 transition">خرید بلیت</button>
             </div>
           </div>
         </div>
@@ -364,41 +225,39 @@
       <!-- Poster 2 -->
       <div class="poster-container">
         <div class="poster h-full">
-          <div class="poster-content">
-            <div class="poster-image aspect-[2/3] relative overflow-hidden">
-              <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
-              <h3 class="poster-title text-sm font-medium absolute top-3 right-3 text-white opacity-0">شب هزار و یکم</h3>
+          <div class="poster-image relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
+          </div>
+          
+          <div class="poster-main-info bg-white p-3">
+            <h3 class="text-sm font-medium mb-1">شب هزار و یکم</h3>
+            <p class="text-xs text-gray-600 mb-1">کارگردان: حمید امجد</p>
+            <p class="text-xs text-gray-500 flex items-center">
+              <i class="fas fa-map-marker-alt ml-1 text-xs"></i>
+              تالار وحدت
+            </p>
+            <div class="flex justify-between items-center mt-2">
+              <p class="text-xs text-gray-500">۲۰ خرداد - ۱۵ تیر</p>
+              <span class="text-xs font-medium">95,000 تومان</span>
             </div>
-            
-            <div class="poster-main-info">
-              <h3 class="text-sm font-medium mb-1">شب هزار و یکم</h3>
-              <p class="text-xs text-gray-600 mb-1">کارگردان: حمید امجد</p>
-              <p class="text-xs text-gray-500 flex items-center">
-                <i class="fas fa-map-marker-alt ml-1 text-xs"></i>
-                تالار وحدت
-              </p>
-              <p class="text-xs text-gray-500 mt-1">۲۰ خرداد - ۱۵ تیر</p>
-            </div>
-            
-            <div class="mobile-info">
-              <div class="price-row">
-                <span class="text-xs font-medium">95,000 تومان</span>
-              </div>
-            </div>
-            
-            <div class="poster-info">
-              <h3 class="text-sm font-medium mb-1">شب هزار و یکم</h3>
+          </div>
+          
+          <div class="poster-info">
+            <div>
+              <h3 class="text-sm font-medium mb-2">شب هزار و یکم</h3>
               <p class="text-xs mb-1">کارگردان: حمید امجد</p>
               <p class="text-xs flex items-center mb-1">
                 <i class="fas fa-map-marker-alt ml-1 text-xs"></i>
                 تالار وحدت
               </p>
               <p class="text-xs mb-2">۲۰ خرداد - ۱۵ تیر</p>
-              <p class="text-xs opacity-80 leading-tight">تلفیقی از داستان‌های کهن ایرانی با اجرایی معاصر</p>
-              <div class="flex items-center justify-between mt-2">
+              <p class="text-xs opacity-80 leading-tight mb-3">تلفیقی از داستان‌های کهن ایرانی با اجرایی معاصر</p>
+            </div>
+            <div>
+              <div class="flex items-center justify-between mb-2">
                 <span class="text-xs font-medium">95,000 تومان</span>
               </div>
-              <button class="w-full mt-2 bg-white text-gray-800 text-xs py-1 px-2 rounded-full hover:bg-gray-100 transition">خرید بلیت</button>
+              <button class="w-full bg-white text-gray-800 text-xs py-2 px-3 rounded-full hover:bg-gray-100 transition">خرید بلیت</button>
             </div>
           </div>
         </div>
@@ -407,43 +266,40 @@
       <!-- Poster 3 -->
       <div class="poster-container">
         <div class="poster h-full">
-          <div class="poster-content">
-            <div class="poster-image aspect-[2/3] relative overflow-hidden">
-              <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
-              <h3 class="poster-title text-sm font-medium absolute top-3 right-3 text-white opacity-0">مکبث</h3>
+          <div class="poster-image relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
+          </div>
+          
+          <div class="poster-main-info bg-white p-3">
+            <h3 class="text-sm font-medium mb-1">مکبث</h3>
+            <p class="text-xs text-gray-600 mb-1">کارگردان: علی رفیعی</p>
+            <p class="text-xs text-gray-500 flex items-center">
+              <i class="fas fa-map-marker-alt ml-1 text-xs"></i>
+              تماشاخانه ایرانشهر
+            </p>
+            <div class="flex justify-between items-center mt-2">
+              <p class="text-xs text-gray-500">۱۰ خرداد - ۵ مرداد</p>
+              <span class="text-xs font-medium">150,000 تومان</span>
             </div>
-            
-            <div class="poster-main-info">
-              <h3 class="text-sm font-medium mb-1">مکبث</h3>
-              <p class="text-xs text-gray-600 mb-1">کارگردان: علی رفیعی</p>
-              <p class="text-xs text-gray-500 flex items-center">
-                <i class="fas fa-map-marker-alt ml-1 text-xs"></i>
-                تماشاخانه ایرانشهر
-              </p>
-              <p class="text-xs text-gray-500 mt-1">۱۰ خرداد - ۵ مرداد</p>
-            </div>
-            
-            <div class="mobile-info">
-              <div class="price-row">
-                <span class="text-xs font-medium">150,000 تومان</span>
-                <span class="discount-tag">15% تخفیف</span>
-              </div>
-            </div>
-            
-            <div class="poster-info">
-              <h3 class="text-sm font-medium mb-1">مکبث</h3>
+          </div>
+          
+          <div class="poster-info">
+            <div>
+              <h3 class="text-sm font-medium mb-2">مکبث</h3>
               <p class="text-xs mb-1">کارگردان: علی رفیعی</p>
               <p class="text-xs flex items-center mb-1">
                 <i class="fas fa-map-marker-alt ml-1 text-xs"></i>
                 تماشاخانه ایرانشهر
               </p>
               <p class="text-xs mb-2">۱۰ خرداد - ۵ مرداد</p>
-              <p class="text-xs opacity-80 leading-tight">اجرایی خیره‌کننده از تراژدی قدرت و طمع</p>
-              <div class="flex items-center justify-between mt-2">
+              <p class="text-xs opacity-80 leading-tight mb-3">اجرایی خیره‌کننده از تراژدی قدرت و طمع</p>
+            </div>
+            <div>
+              <div class="flex items-center justify-between mb-2">
                 <span class="text-xs font-medium">150,000 تومان</span>
                 <span class="discount-tag">15% تخفیف</span>
               </div>
-              <button class="w-full mt-2 bg-white text-gray-800 text-xs py-1 px-2 rounded-full hover:bg-gray-100 transition">خرید بلیت</button>
+              <button class="w-full bg-white text-gray-800 text-xs py-2 px-3 rounded-full hover:bg-gray-100 transition">خرید بلیت</button>
             </div>
           </div>
         </div>
@@ -452,41 +308,39 @@
       <!-- Poster 4 -->
       <div class="poster-container">
         <div class="poster h-full">
-          <div class="poster-content">
-            <div class="poster-image aspect-[2/3] relative overflow-hidden">
-              <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
-              <h3 class="poster-title text-sm font-medium absolute top-3 right-3 text-white opacity-0">باغ آلبالو</h3>
+          <div class="poster-image relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
+          </div>
+          
+          <div class="poster-main-info bg-white p-3">
+            <h3 class="text-sm font-medium mb-1">باغ آلبالو</h3>
+            <p class="text-xs text-gray-600 mb-1">کارگردان: محمد رحمانیان</p>
+            <p class="text-xs text-gray-500 flex items-center">
+              <i class="fas fa-map-marker-alt ml-1 text-xs"></i>
+              تئاتر شهر
+            </p>
+            <div class="flex justify-between items-center mt-2">
+              <p class="text-xs text-gray-500">۵ خرداد - ۳۰ تیر</p>
+              <span class="text-xs font-medium">80,000 تومان</span>
             </div>
-            
-            <div class="poster-main-info">
-              <h3 class="text-sm font-medium mb-1">باغ آلبالو</h3>
-              <p class="text-xs text-gray-600 mb-1">کارگردان: محمد رحمانیان</p>
-              <p class="text-xs text-gray-500 flex items-center">
-                <i class="fas fa-map-marker-alt ml-1 text-xs"></i>
-                تئاتر شهر
-              </p>
-              <p class="text-xs text-gray-500 mt-1">۵ خرداد - ۳۰ تیر</p>
-            </div>
-            
-            <div class="mobile-info">
-              <div class="price-row">
-                <span class="text-xs font-medium">80,000 تومان</span>
-              </div>
-            </div>
-            
-            <div class="poster-info">
-              <h3 class="text-sm font-medium mb-1">باغ آلبالو</h3>
+          </div>
+          
+          <div class="poster-info">
+            <div>
+              <h3 class="text-sm font-medium mb-2">باغ آلبالو</h3>
               <p class="text-xs mb-1">کارگردان: محمد رحمانیان</p>
               <p class="text-xs flex items-center mb-1">
                 <i class="fas fa-map-marker-alt ml-1 text-xs"></i>
                 تئاتر شهر
               </p>
               <p class="text-xs mb-2">۵ خرداد - ۳۰ تیر</p>
-              <p class="text-xs opacity-80 leading-tight">نمایشی از چخوف با نگاهی معاصر به مفاهیم تغییر و گذار</p>
-              <div class="flex items-center justify-between mt-2">
+              <p class="text-xs opacity-80 leading-tight mb-3">نمایشی از چخوف با نگاهی معاصر به مفاهیم تغییر و گذار</p>
+            </div>
+            <div>
+              <div class="flex items-center justify-between mb-2">
                 <span class="text-xs font-medium">80,000 تومان</span>
               </div>
-              <button class="w-full mt-2 bg-white text-gray-800 text-xs py-1 px-2 rounded-full hover:bg-gray-100 transition">خرید بلیت</button>
+              <button class="w-full bg-white text-gray-800 text-xs py-2 px-3 rounded-full hover:bg-gray-100 transition">خرید بلیت</button>
             </div>
           </div>
         </div>
@@ -495,43 +349,40 @@
       <!-- Poster 5 -->
       <div class="poster-container">
         <div class="poster h-full">
-          <div class="poster-content">
-            <div class="poster-image aspect-[2/3] relative overflow-hidden">
-              <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
-              <h3 class="poster-title text-sm font-medium absolute top-3 right-3 text-white opacity-0">مرگ فروشنده</h3>
+          <div class="poster-image relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
+          </div>
+          
+          <div class="poster-main-info bg-white p-3">
+            <h3 class="text-sm font-medium mb-1">مرگ فروشنده</h3>
+            <p class="text-xs text-gray-600 mb-1">کارگردان: هادی مرزبان</p>
+            <p class="text-xs text-gray-500 flex items-center">
+              <i class="fas fa-map-marker-alt ml-1 text-xs"></i>
+              تالار مولوی
+            </p>
+            <div class="flex justify-between items-center mt-2">
+              <p class="text-xs text-gray-500">۲۵ خرداد - ۲۰ مرداد</p>
+              <span class="text-xs font-medium">110,000 تومان</span>
             </div>
-            
-            <div class="poster-main-info">
-              <h3 class="text-sm font-medium mb-1">مرگ فروشنده</h3>
-              <p class="text-xs text-gray-600 mb-1">کارگردان: هادی مرزبان</p>
-              <p class="text-xs text-gray-500 flex items-center">
-                <i class="fas fa-map-marker-alt ml-1 text-xs"></i>
-                تالار مولوی
-              </p>
-              <p class="text-xs text-gray-500 mt-1">۲۵ خرداد - ۲۰ مرداد</p>
-            </div>
-            
-            <div class="mobile-info">
-              <div class="price-row">
-                <span class="text-xs font-medium">110,000 تومان</span>
-                <span class="discount-tag">10% تخفیف</span>
-              </div>
-            </div>
-            
-            <div class="poster-info">
-              <h3 class="text-sm font-medium mb-1">مرگ فروشنده</h3>
+          </div>
+          
+          <div class="poster-info">
+            <div>
+              <h3 class="text-sm font-medium mb-2">مرگ فروشنده</h3>
               <p class="text-xs mb-1">کارگردان: هادی مرزبان</p>
               <p class="text-xs flex items-center mb-1">
                 <i class="fas fa-map-marker-alt ml-1 text-xs"></i>
                 تالار مولوی
               </p>
               <p class="text-xs mb-2">۲۵ خرداد - ۲۰ مرداد</p>
-              <p class="text-xs opacity-80 leading-tight">نمایشی تأثیرگذار از آرتور میلر درباره رویاهای آمریکایی</p>
-              <div class="flex items-center justify-between mt-2">
+              <p class="text-xs opacity-80 leading-tight mb-3">نمایشی تأثیرگذار از آرتور میلر درباره رویاهای آمریکایی</p>
+            </div>
+            <div>
+              <div class="flex items-center justify-between mb-2">
                 <span class="text-xs font-medium">110,000 تومان</span>
                 <span class="discount-tag">10% تخفیف</span>
               </div>
-              <button class="w-full mt-2 bg-white text-gray-800 text-xs py-1 px-2 rounded-full hover:bg-gray-100 transition">خرید بلیت</button>
+              <button class="w-full bg-white text-gray-800 text-xs py-2 px-3 rounded-full hover:bg-gray-100 transition">خرید بلیت</button>
             </div>
           </div>
         </div>
@@ -547,13 +398,16 @@
   </footer>
 
   <script>
-    // Mobile info toggle
+    // Toggle full info on click (for mobile)
     document.querySelectorAll('.poster').forEach(poster => {
       poster.addEventListener('click', function() {
-        if (window.innerWidth <= 768) {
-          const info = this.querySelector('.mobile-info');
-          info.style.display = info.style.display === 'none' ? 'block' : 'none';
-        }
+        // Close all other open posters
+        document.querySelectorAll('.poster').forEach(p => {
+          if (p !== this) p.classList.remove('active');
+        });
+        
+        // Toggle current poster
+        this.classList.toggle('active');
       });
     });
     
@@ -565,12 +419,11 @@
       });
     });
     
-    // Icon nav functionality
-    document.querySelectorAll('.minimal-icon-item').forEach(item => {
-      item.addEventListener('click', function() {
-        document.querySelectorAll('.minimal-icon-item').forEach(i => i.classList.remove('active'));
-        this.classList.add('active');
-      });
+    // Close poster info when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.poster')) {
+        document.querySelectorAll('.poster').forEach(p => p.classList.remove('active'));
+      }
     });
   </script>
 </body>
