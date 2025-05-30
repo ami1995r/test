@@ -108,7 +108,7 @@
       display: none;
     }
     
-    /* Individual category tab styling - Reverted font size, padding, margin */
+    /* Individual category tab styling - Increased font size */
     .category-tab {
       padding: 0.5rem 0.5rem; /* Original padding */
       margin: 0 0.25rem; /* Original margin between tabs */
@@ -122,7 +122,7 @@
       background-color: transparent; /* Ensure no background */
       border-radius: 0; /* No border radius */
       box-shadow: none; /* No shadow */
-      font-size: 0.85rem; /* Reverted font size */
+      font-size: 1.5rem; /* Increased font size to match h1 */
     }
     
     /* Active category tab styling - Only dark blue text, removed underline */
@@ -180,11 +180,14 @@
       }
       .category-tab {
         padding: 0.5rem 0.75rem; /* Adjust padding for mobile */
-        font-size: 0.85rem; /* Adjusted font size for mobile */
+        font-size: 1.25rem; /* Adjusted font size for mobile */
       }
       /* Adjustments for Hero Section on mobile */
       .hero-section {
         height: 200px; /* Shorter height on mobile */
+      }
+      .hero-section .hero-overlay { /* Added overlay for mobile hero */
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.2));
       }
       .hero-section .text-md { /* Adjust button text size */
         font-size: 0.9rem;
@@ -200,22 +203,18 @@
 
       /* Adjustments for Filters on mobile */
       .filters-container {
-        /* Removed flex-direction: column; to allow horizontal scroll */
         flex-wrap: nowrap; /* Prevent wrapping */
         overflow-x: auto; /* Enable horizontal scrolling */
         -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
         scrollbar-width: none; /* Hide scrollbar for Firefox */
         gap: 0.75rem; /* Adjust gap */
+        justify-content: flex-start; /* Ensure left alignment for scroll */
       }
       .filters-container::-webkit-scrollbar {
         display: none; /* Hide scrollbar for Webkit browsers */
       }
-      .filters-container label {
-        flex-shrink: 0; /* Prevent label from shrinking */
-        white-space: nowrap; /* Prevent label from wrapping */
-      }
       .filters-container select {
-        min-width: 100px; /* Give a minimum width to select boxes */
+        min-width: 120px; /* Give a minimum width to select boxes */
         flex-shrink: 0; /* Prevent shrinking */
       }
       .filters-container button {
@@ -277,7 +276,7 @@
   </header>
 
   <div class="container mx-auto px-4 pt-4 pb-4"> <div class="hero-section bg-cover bg-center h-64 relative flex items-center justify-center text-center rounded-xl overflow-hidden" style="background-image: url('https://placehold.co/1200x600/333333/F8F8F8?text=Main+Banner+Image');">
-          <div class="relative z-10 text-white p-4 flex flex-col justify-end h-full w-full">
+          <div class="absolute inset-0 hero-overlay"></div> <div class="relative z-10 text-white p-4 flex flex-col justify-end h-full w-full">
               <a href="#" class="inline-block bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white text-md py-2 px-6 rounded-full transition duration-300 ease-in-out shadow-lg self-center mb-4">تهیه بلیت</a>
           </div>
       </div>
