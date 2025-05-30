@@ -200,15 +200,26 @@
 
       /* Adjustments for Filters on mobile */
       .filters-container {
-        flex-direction: column; /* Stack filters vertically */
-        align-items: flex-start; /* Align items to start */
-        gap: 0.5rem; /* Reduce gap */
+        /* Removed flex-direction: column; to allow horizontal scroll */
+        flex-wrap: nowrap; /* Prevent wrapping */
+        overflow-x: auto; /* Enable horizontal scrolling */
+        -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+        scrollbar-width: none; /* Hide scrollbar for Firefox */
+        gap: 0.75rem; /* Adjust gap */
       }
-      .filters-container label, .filters-container select, .filters-container button {
-        width: 100%; /* Full width for better touch targets */
+      .filters-container::-webkit-scrollbar {
+        display: none; /* Hide scrollbar for Webkit browsers */
+      }
+      .filters-container label {
+        flex-shrink: 0; /* Prevent label from shrinking */
+        white-space: nowrap; /* Prevent label from wrapping */
       }
       .filters-container select {
-        min-width: unset; /* Remove min-width constraint */
+        min-width: 100px; /* Give a minimum width to select boxes */
+        flex-shrink: 0; /* Prevent shrinking */
+      }
+      .filters-container button {
+        flex-shrink: 0; /* Prevent shrinking */
       }
     }
     
@@ -273,33 +284,30 @@
   </div>
 
   <div class="container mx-auto px-4 pt-4 pb-4">
-      <div class="flex flex-wrap items-center justify-start gap-4 text-sm filters-container"> <label for="city-filter" class="text-gray-700">شهر:</label>
+      <div class="flex flex-wrap items-center justify-start gap-4 text-sm filters-container">
           <select id="city-filter" class="py-2 px-3 rounded-md border border-gray-300 bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400 min-w-[120px]">
-              <option value="">همه شهرها</option>
+              <option value="">شهر: همه</option>
               <option value="tehran">تهران</option>
               <option value="mashhad">مشهد</option>
               <option value="esfahan">اصفهان</option>
           </select>
 
-          <label for="date-filter" class="text-gray-700">تاریخ:</label>
           <select id="date-filter" class="py-2 px-3 rounded-md border border-gray-300 bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400 min-w-[120px]">
-              <option value="">همه تاریخ‌ها</option>
+              <option value="">تاریخ: همه</option>
               <option value="this-week">این هفته</option>
               <option value="next-week">هفته آینده</option>
               <option value="this-month">این ماه</option>
           </select>
 
-          <label for="genre-filter" class="text-gray-700">ژانر:</label>
           <select id="genre-filter" class="py-2 px-3 rounded-md border border-gray-300 bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400 min-w-[120px]">
-              <option value="">همه ژانرها</option>
+              <option value="">ژانر: همه</option>
               <option value="comedy">کمدی</option>
               <option value="drama">درام</option>
               <option value="musical">موزیکال</option>
           </select>
 
-          <label for="sort-filter" class="text-gray-700">مرتب‌سازی:</label>
           <select id="sort-filter" class="py-2 px-3 rounded-md border border-gray-300 bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400 min-w-[120px]">
-              <option value="latest">جدیدترین</option>
+              <option value="latest">مرتب‌سازی: جدیدترین</option>
               <option value="popular">محبوب‌ترین</option>
               <option value="cheapest">ارزان‌ترین</option>
           </select>
