@@ -3,68 +3,81 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>مینیمال | تئاتر</title>
+  <title>دوباره | تئاتر</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
+    /* Import Vazirmatn font from Google Fonts */
     @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700&display=swap');
     
+    /* Apply Vazirmatn font to the body and set background color */
     body {
       font-family: 'Vazirmatn', sans-serif;
-      background-color: #f8fafc;
+      background-color: #f8fafc; /* Light gray background */
     }
     
+    /* Perspective for 3D-like hover effect on posters */
     .poster-container {
       perspective: 1000px;
     }
     
+    /* Poster base styling, transition for hover effects */
     .poster {
       transition: all 0.3s ease;
-      border-radius: 12px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      border-radius: 12px; /* Rounded corners */
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); /* Subtle shadow */
       position: relative;
-      overflow: hidden;
+      overflow: hidden; /* Hide overflowing content */
+      background-color: white; /* White background for poster */
     }
     
+    /* Poster image styling */
     .poster-image {
-      border-radius: 12px 12px 0 0;
-      transition: all 0.5s ease;
-      aspect-ratio: 2/3;
-      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      border-radius: 12px 12px 0 0; /* Rounded top corners */
+      transition: all 0.5s ease; /* Smooth transition for image */
+      aspect-ratio: 2/3; /* Maintain aspect ratio */
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); /* Placeholder gradient background */
+      width: 100%; /* Full width */
+      height: auto; /* Auto height */
+      object-fit: cover; /* Cover the area */
     }
-    
+
+    /* Overlay info on poster hover/active */
     .poster-info {
       position: absolute;
       top: 0;
       right: 0;
       bottom: 0;
       left: 0;
-      background: rgba(0, 0, 0, 0.85);
+      background: rgba(0, 0, 0, 0.85); /* Original darker overlay with transparency */
       color: white;
-      padding: 1rem;
-      opacity: 0;
-      transition: all 0.3s ease;
+      padding: 1rem; /* Original padding */
+      opacity: 0; /* Hidden by default */
+      transition: all 0.3s ease; /* Original transition */
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      border-radius: 12px;
+      border-radius: 12px; /* Match poster border-radius */
     }
     
+    /* Show poster info on hover or when active (clicked on mobile) */
     .poster:hover .poster-info,
     .poster.active .poster-info {
       opacity: 1;
     }
     
+    /* Price tag styling (original) */
     .price-tag {
-      background-color: #2d3748;
+      background-color: #2d3748; /* Dark gray */
       color: white;
       padding: 0.2rem 0.4rem;
       border-radius: 4px;
       font-size: 0.65rem;
     }
     
+    /* Discount tag styling (original) */
     .discount-tag {
-      background-color: #e53e3e;
+      background-color: #e53e3e; /* Red */
       color: white;
       padding: 0.2rem 0.4rem;
       border-radius: 4px;
@@ -72,58 +85,77 @@
       margin-right: 0.25rem;
     }
     
+    /* Header background color */
     .header-bg {
-      background-color: #1a365d;
+      background-color: #1a365d; /* Dark blue */
     }
     
+    /* Category tabs container styling - Reverted to non-sticky, simpler */
     .category-tabs {
       display: flex;
-      overflow-x: auto;
-      padding-bottom: 0.5rem;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
+      justify-content: flex-start; /* Left-alignment */
+      overflow-x: auto; /* Enable horizontal scrolling */
+      padding: 0.5rem 0; /* Reduced vertical padding */
+      -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+      scrollbar-width: none; /* Hide scrollbar for Firefox */
+      background-color: transparent; /* No background */
+      box-shadow: none; /* No shadow */
+      border-bottom: none; /* No border */
     }
     
+    /* Hide scrollbar for Webkit browsers */
     .category-tabs::-webkit-scrollbar {
       display: none;
     }
     
+    /* Individual category tab styling - Reverted font size, padding, margin */
     .category-tab {
-      padding: 0.5rem 1rem;
-      margin: 0 0.25rem;
+      padding: 0.5rem 0.5rem; /* Original padding */
+      margin: 0 0.25rem; /* Original margin between tabs */
       cursor: pointer;
       transition: all 0.3s ease;
-      border-bottom: 2px solid transparent;
+      border-bottom: 2px solid transparent; /* Transparent border by default */
       font-weight: 500;
-      color: #4a5568;
-      white-space: nowrap;
-      flex-shrink: 0;
+      color: #4a5568; /* Gray text */
+      white-space: nowrap; /* Prevent wrapping */
+      flex-shrink: 0; /* Prevent shrinking */
+      background-color: transparent; /* Ensure no background */
+      border-radius: 0; /* No border radius */
+      box-shadow: none; /* No shadow */
+      font-size: 0.85rem; /* Reverted font size */
     }
     
+    /* Active category tab styling - Only dark blue text, removed underline */
     .category-tab.active {
-      border-bottom: 2px solid #1a365d;
-      color: #1a365d;
+      border-bottom: none; /* Removed underline */
+      color: #1a365d; /* Dark blue text when active */
+      background-color: transparent; /* Ensure no background */
+      box-shadow: none; /* Ensure no shadow */
     }
     
+    /* Category tab hover effect - Dark blue text on hover */
     .category-tab:hover {
-      color: #1a365d;
+      color: #1a365d; /* Dark blue text on hover */
+      background-color: transparent; /* Ensure no background on hover */
     }
     
+    /* City tag on poster image */
     .city-tag {
       position: absolute;
       top: 8px;
       left: 8px;
-      background-color: rgba(0, 0, 0, 0.7);
+      background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black */
       color: white;
       padding: 0.25rem 0.5rem;
       border-radius: 4px;
       font-size: 0.65rem;
       z-index: 10;
     }
-    
+
+    /* Responsive adjustments for smaller screens (max-width: 768px) */
     @media (max-width: 768px) {
       .poster-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
+        grid-template-columns: repeat(2, 1fr) !important; /* 2 columns on tablets */
       }
       
       .poster-main-info {
@@ -146,61 +178,103 @@
         font-size: 0.6rem;
         padding: 0.2rem 0.4rem;
       }
+      .category-tab {
+        padding: 0.5rem 0.75rem; /* Adjust padding for mobile */
+        font-size: 0.85rem; /* Adjusted font size for mobile */
+      }
     }
     
+    /* Responsive adjustments for very small screens (max-width: 480px) */
     @media (max-width: 480px) {
       .poster-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
-      }
-      
-      .category-tab {
-        padding: 0.5rem 0.75rem;
-        font-size: 0.85rem;
+        grid-template-columns: repeat(2, 1fr) !important; /* Still 2 columns on small mobiles */
       }
     }
   </style>
 </head>
 <body class="text-gray-900">
-  <!-- Minimal Header -->
-  <header class="header-bg text-white h-16 flex items-center sticky top-0 z-10">
-    <div class="container mx-auto px-4">
+  <header class="header-bg text-white h-16 flex items-center sticky top-0 z-20 shadow-md">
+    <div class="container mx-auto px-4 w-full">
       <div class="flex justify-between items-center">
-        <!-- Logo -->
-        <div class="text-xl font-bold text-white">مینیمال</div>
+        <div class="text-xl font-bold text-white">دوباره</div>
         
-        <!-- Auth Buttons -->
-        <div class="flex space-x-4">
-          <a href="#" class="auth-btn text-sm">ورود</a>
-          <a href="#" class="auth-btn text-sm">عضویت</a>
+        <div class="flex-grow mx-4 max-w-md">
+          <div class="relative">
+            <input type="text" placeholder="جستجو در نمایش‌ها..." class="w-full py-2 px-4 pr-10 rounded-full bg-white text-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400">
+            <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-500"></i> </div>
         </div>
+
+        <div class="flex space-x-4"> <a href="#" class="auth-btn text-white text-base py-0 px-2 hover:text-blue-300 transition">ورود</a> <a href="#" class="auth-btn text-white text-base py-0 px-2 hover:text-blue-300 transition">عضویت</a> </div>
       </div>
     </div>
   </header>
 
-  <!-- Category Tabs -->
-  <div class="container mx-auto px-4 py-4 sticky top-16 bg-white z-10 shadow-sm">
-    <div class="category-tabs">
-      <div class="category-tab active">همه</div>
-      <div class="category-tab">تئاتر</div>
-      <div class="category-tab">نمایش خیابانی</div>
-      <div class="category-tab">پرفورمنس</div>
+  <div class="container mx-auto px-4 pt-4 pb-4"> <div class="hero-section bg-cover bg-center h-64 relative flex items-center justify-center text-center rounded-xl overflow-hidden" style="background-image: url('https://placehold.co/1200x600/333333/F8F8F8?text=Main+Banner+Image');">
+          <div class="relative z-10 text-white p-4 flex flex-col justify-end h-full w-full">
+              <a href="#" class="inline-block bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white text-md py-2 px-6 rounded-full transition duration-300 ease-in-out shadow-lg self-center mb-4">تهیه بلیت</a>
+          </div>
+      </div>
+  </div>
+
+  <div class="container mx-auto px-4 pt-4 pb-4">
+      <div class="flex flex-wrap items-center justify-start gap-4 text-sm">
+          <label for="city-filter" class="text-gray-700">شهر:</label>
+          <select id="city-filter" class="py-2 px-3 rounded-md border border-gray-300 bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400 min-w-[120px]">
+              <option value="">همه شهرها</option>
+              <option value="tehran">تهران</option>
+              <option value="mashhad">مشهد</option>
+              <option value="esfahan">اصفهان</option>
+          </select>
+
+          <label for="date-filter" class="text-gray-700">تاریخ:</label>
+          <select id="date-filter" class="py-2 px-3 rounded-md border border-gray-300 bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400 min-w-[120px]">
+              <option value="">همه تاریخ‌ها</option>
+              <option value="this-week">این هفته</option>
+              <option value="next-week">هفته آینده</option>
+              <option value="this-month">این ماه</option>
+          </select>
+
+          <label for="genre-filter" class="text-gray-700">ژانر:</label>
+          <select id="genre-filter" class="py-2 px-3 rounded-md border border-gray-300 bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400 min-w-[120px]">
+              <option value="">همه ژانرها</option>
+              <option value="comedy">کمدی</option>
+              <option value="drama">درام</option>
+              <option value="musical">موزیکال</option>
+          </select>
+
+          <label for="sort-filter" class="text-gray-700">مرتب‌سازی:</label>
+          <select id="sort-filter" class="py-2 px-3 rounded-md border border-gray-300 bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400 min-w-[120px]">
+              <option value="latest">جدیدترین</option>
+              <option value="popular">محبوب‌ترین</option>
+              <option value="cheapest">ارزان‌ترین</option>
+          </select>
+
+          <button class="py-2 px-4 rounded-md bg-gray-200 text-gray-700 hover:bg-gray-300 transition focus:outline-none focus:ring-2 focus:ring-gray-400">
+              <i class="fas fa-times ml-1"></i> پاک کردن فیلترها
+          </button>
+      </div>
+  </div>
+
+  <div class="container mx-auto px-4 pt-4 pb-0"> <div class="category-tabs">
+      <div class="category-tab active">تئاتر</div>
+      <div class="category-tab">نمایشنامه خوانی</div>
+      <div class="category-tab">کودک و نوجوان</div>
+      <div class="category-tab">فیلم تئاتر</div>
+      <div class="category-tab">کنسرت</div>
     </div>
   </div>
 
-  <!-- Main Content -->
+  <div class="container mx-auto px-4 pt-4 pb-2">
+    <h1 class="text-2xl font-bold text-right text-gray-800">نمایش‌های در حال اجرا</h1>
+  </div>
+
   <main class="container mx-auto px-4 py-4">
-    <!-- Section Title -->
-    <h1 class="text-xl font-medium mb-6 text-right">نمایش‌های در حال اجرا</h1>
-    
-    <!-- Posters Grid -->
     <div class="poster-grid grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
-      <!-- Poster 1 -->
       <div class="poster-container">
         <div class="poster h-full">
-          <div class="poster-image relative overflow-hidden">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
-            <div class="city-tag">تهران</div>
-          </div>
+          <img src="https://placehold.co/400x600/E0E0E0/333333?text=Hamlet" alt="Hamlet Poster" class="poster-image">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
+          <div class="city-tag">تهران</div>
           
           <div class="poster-main-info bg-white p-3">
             <h3 class="text-sm font-medium mb-1">هملت</h3>
@@ -232,13 +306,11 @@
         </div>
       </div>
       
-      <!-- Poster 2 -->
       <div class="poster-container">
         <div class="poster h-full">
-          <div class="poster-image relative overflow-hidden">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
-            <div class="city-tag">تهران</div>
-          </div>
+          <img src="https://placehold.co/400x600/D0D0D0/333333?text=One+Thousand+and+First+Night" alt="One Thousand and First Night Poster" class="poster-image">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
+          <div class="city-tag">تهران</div>
           
           <div class="poster-main-info bg-white p-3">
             <h3 class="text-sm font-medium mb-1">شب هزار و یکم</h3>
@@ -269,13 +341,11 @@
         </div>
       </div>
       
-      <!-- Poster 3 -->
       <div class="poster-container">
         <div class="poster h-full">
-          <div class="poster-image relative overflow-hidden">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
-            <div class="city-tag">تهران</div>
-          </div>
+          <img src="https://placehold.co/400x600/C0C0C0/333333?text=Macbeth" alt="Macbeth Poster" class="poster-image">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
+          <div class="city-tag">تهران</div>
           
           <div class="poster-main-info bg-white p-3">
             <h3 class="text-sm font-medium mb-1">مکبث</h3>
@@ -307,13 +377,11 @@
         </div>
       </div>
       
-      <!-- Poster 4 -->
       <div class="poster-container">
         <div class="poster h-full">
-          <div class="poster-image relative overflow-hidden">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
-            <div class="city-tag">اصفهان</div>
-          </div>
+          <img src="https://placehold.co/400x600/B0B0B0/333333?text=Cherry+Orchard" alt="Cherry Orchard Poster" class="poster-image">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
+          <div class="city-tag">اصفهان</div>
           
           <div class="poster-main-info bg-white p-3">
             <h3 class="text-sm font-medium mb-1">باغ آلبالو</h3>
@@ -344,13 +412,11 @@
         </div>
       </div>
       
-      <!-- Poster 5 -->
       <div class="poster-container">
         <div class="poster h-full">
-          <div class="poster-image relative overflow-hidden">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
-            <div class="city-tag">مشهد</div>
-          </div>
+          <img src="https://placehold.co/400x600/A0A0A0/333333?text=Death+of+a+Salesman" alt="Death of a Salesman Poster" class="poster-image">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
+          <div class="city-tag">مشهد</div>
           
           <div class="poster-main-info bg-white p-3">
             <h3 class="text-sm font-medium mb-1">مرگ فروشنده</h3>
@@ -384,39 +450,241 @@
     </div>
   </main>
 
-  <!-- Minimal Footer -->
-  <footer class="border-t border-gray-200 py-6">
+  <div class="container mx-auto px-4 pt-8 pb-2">
+    <h1 class="text-2xl font-bold text-right text-gray-800">فیلم تئاتر</h1>
+  </div>
+
+  <main class="container mx-auto px-4 py-4">
+    <div class="poster-grid grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+      <div class="poster-container">
+        <div class="poster h-full">
+          <img src="https://placehold.co/400x600/E0E0E0/333333?text=Film+Theater+1" alt="Film Theater Poster 1" class="poster-image">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
+          <div class="city-tag">آنلاین</div>
+          
+          <div class="poster-main-info bg-white p-3">
+            <h3 class="text-sm font-medium mb-1">فیلم تئاتر ۱</h3>
+            <p class="text-xs text-gray-600 mb-1">کارگردان: کارگردان فیلم ۱</p>
+            <div class="flex justify-between items-center mt-2">
+              <p class="text-xs text-gray-500">پخش آنلاین</p>
+            </div>
+          </div>
+          
+          <div class="poster-info">
+            <div>
+              <h3 class="text-sm font-medium mb-2">فیلم تئاتر ۱</h3>
+              <p class="text-xs mb-1">کارگردان: کارگردان فیلم ۱</p>
+              <p class="text-xs flex items-center mb-1">
+                <i class="fas fa-video ml-1 text-xs"></i>
+                پخش آنلاین
+              </p>
+              <p class="text-xs mb-2">تاریخ پخش: نامشخص</p>
+              <p class="text-xs opacity-80 leading-tight mb-3">توضیحات مربوط به فیلم تئاتر ۱</p>
+            </div>
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-medium">50,000 تومان</span>
+                <span class="discount-tag">10% تخفیف</span>
+              </div>
+              <button class="w-full bg-white text-gray-800 text-xs py-2 px-3 rounded-full hover:bg-gray-100 transition">خرید بلیت</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="poster-container">
+        <div class="poster h-full">
+          <img src="https://placehold.co/400x600/D0D0D0/333333?text=Film+Theater+2" alt="Film Theater Poster 2" class="poster-image">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
+          <div class="city-tag">آنلاین</div>
+          
+          <div class="poster-main-info bg-white p-3">
+            <h3 class="text-sm font-medium mb-1">فیلم تئاتر ۲</h3>
+            <p class="text-xs text-gray-600 mb-1">کارگردان: کارگردان فیلم ۲</p>
+            <div class="flex justify-between items-center mt-2">
+              <p class="text-xs text-gray-500">پخش آنلاین</p>
+            </div>
+          </div>
+          
+          <div class="poster-info">
+            <div>
+              <h3 class="text-sm font-medium mb-2">فیلم تئاتر ۲</h3>
+              <p class="text-xs mb-1">کارگردان: کارگردان فیلم ۲</p>
+              <p class="text-xs flex items-center mb-1">
+                <i class="fas fa-video ml-1 text-xs"></i>
+                پخش آنلاین
+              </p>
+              <p class="text-xs mb-2">تاریخ پخش: نامشخص</p>
+              <p class="text-xs opacity-80 leading-tight mb-3">توضیحات مربوط به فیلم تئاتر ۲</p>
+            </div>
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-medium">60,000 تومان</span>
+              </div>
+              <button class="w-full bg-white text-gray-800 text-xs py-2 px-3 rounded-full hover:bg-gray-100 transition">خرید بلیت</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="poster-container">
+        <div class="poster h-full">
+          <img src="https://placehold.co/400x600/C0C0C0/333333?text=Film+Theater+3" alt="Film Theater Poster 3" class="poster-image">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
+          <div class="city-tag">آنلاین</div>
+          
+          <div class="poster-main-info bg-white p-3">
+            <h3 class="text-sm font-medium mb-1">فیلم تئاتر ۳</h3>
+            <p class="text-xs text-gray-600 mb-1">کارگردان: کارگردان فیلم ۳</p>
+            <div class="flex justify-between items-center mt-2">
+              <p class="text-xs text-gray-500">پخش آنلاین</p>
+            </div>
+          </div>
+          
+          <div class="poster-info">
+            <div>
+              <h3 class="text-sm font-medium mb-2">فیلم تئاتر ۳</h3>
+              <p class="text-xs mb-1">کارگردان: کارگردان فیلم ۳</p>
+              <p class="text-xs flex items-center mb-1">
+                <i class="fas fa-video ml-1 text-xs"></i>
+                پخش آنلاین
+              </p>
+              <p class="text-xs mb-2">تاریخ پخش: نامشخص</p>
+              <p class="text-xs opacity-80 leading-tight mb-3">توضیحات مربوط به فیلم تئاتر ۳</p>
+            </div>
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-medium">75,000 تومان</span>
+                <span class="discount-tag">25% تخفیف</span>
+              </div>
+              <button class="w-full bg-white text-gray-800 text-xs py-2 px-3 rounded-full hover:bg-gray-100 transition">خرید بلیت</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="poster-container">
+        <div class="poster h-full">
+          <img src="https://placehold.co/400x600/B0B0B0/333333?text=Film+Theater+4" alt="Film Theater Poster 4" class="poster-image">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
+          <div class="city-tag">آنلاین</div>
+          
+          <div class="poster-main-info bg-white p-3">
+            <h3 class="text-sm font-medium mb-1">فیلم تئاتر ۴</h3>
+            <p class="text-xs text-gray-600 mb-1">کارگردان: کارگردان فیلم ۴</p>
+            <div class="flex justify-between items-center mt-2">
+              <p class="text-xs text-gray-500">پخش آنلاین</p>
+            </div>
+          </div>
+          
+          <div class="poster-info">
+            <div>
+              <h3 class="text-sm font-medium mb-2">فیلم تئاتر ۴</h3>
+              <p class="text-xs mb-1">کارگردان: کارگردان فیلم ۴</p>
+              <p class="text-xs flex items-center mb-1">
+                <i class="fas fa-video ml-1 text-xs"></i>
+                پخش آنلاین
+              </p>
+              <p class="text-xs mb-2">تاریخ پخش: نامشخص</p>
+              <p class="text-xs opacity-80 leading-tight mb-3">توضیحات مربوط به فیلم تئاتر ۴</p>
+            </div>
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-medium">55,000 تومان</span>
+              </div>
+              <button class="w-full bg-white text-gray-800 text-xs py-2 px-3 rounded-full hover:bg-gray-100 transition">خرید بلیت</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="poster-container">
+        <div class="poster h-full">
+          <img src="https://placehold.co/400x600/A0A0A0/333333?text=Film+Theater+5" alt="Film Theater Poster 5" class="poster-image">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
+          <div class="city-tag">آنلاین</div>
+          
+          <div class="poster-main-info bg-white p-3">
+            <h3 class="text-sm font-medium mb-1">فیلم تئاتر ۵</h3>
+            <p class="text-xs text-gray-600 mb-1">کارگردان: کارگردان فیلم ۵</p>
+            <div class="flex justify-between items-center mt-2">
+              <p class="text-xs text-gray-500">پخش آنلاین</p>
+            </div>
+          </div>
+          
+          <div class="poster-info">
+            <div>
+              <h3 class="text-sm font-medium mb-2">فیلم تئاتر ۵</h3>
+              <p class="text-xs mb-1">کارگردان: کارگردان فیلم ۵</p>
+              <p class="text-xs flex items-center mb-1">
+                <i class="fas fa-video ml-1 text-xs"></i>
+                پخش آنلاین
+              </p>
+              <p class="text-xs mb-2">تاریخ پخش: نامشخص</p>
+              <p class="text-xs opacity-80 leading-tight mb-3">نمایشی تأثیرگذار از آرتور میلر درباره رویاهای آمریکایی</p>
+            </div>
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-medium">85,000 تومان</span>
+                <span class="discount-tag">15% تخفیف</span>
+              </div>
+              <button class="w-full bg-white text-gray-800 text-xs py-2 px-3 rounded-full hover:bg-gray-100 transition">خرید بلیت</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="border-t border-gray-200 py-6 bg-gray-50">
     <div class="container mx-auto px-4 text-center">
       <p class="text-xs text-gray-500">© ۱۴۰۳ | تمامی حقوق محفوظ است</p>
     </div>
   </footer>
 
   <script>
-    // Toggle full info on click (for mobile)
-    document.querySelectorAll('.poster').forEach(poster => {
-      poster.addEventListener('click', function() {
+    // Get all poster elements
+    const posters = document.querySelectorAll('.poster');
+    // Get all category tab elements
+    const categoryTabs = document.querySelectorAll('.category-tab');
+
+    // Function to close all active posters
+    function closeAllPosters() {
+      posters.forEach(p => p.classList.remove('active'));
+    }
+
+    // Toggle full info on click for mobile devices
+    posters.forEach(poster => {
+      poster.addEventListener('click', function(event) {
+        // Prevent event from bubbling up to document click listener immediately
+        event.stopPropagation(); 
+        
         // Close all other open posters
-        document.querySelectorAll('.poster').forEach(p => {
+        posters.forEach(p => {
           if (p !== this) p.classList.remove('active');
         });
         
-        // Toggle current poster
+        // Toggle active class for the clicked poster
         this.classList.toggle('active');
       });
     });
     
     // Category tabs functionality
-    document.querySelectorAll('.category-tab').forEach(tab => {
+    categoryTabs.forEach(tab => {
       tab.addEventListener('click', function() {
-        document.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
+        // Remove 'active' class from all tabs
+        categoryTabs.forEach(t => t.classList.remove('active'));
+        // Add 'active' class to the clicked tab
         this.classList.add('active');
+        // In a real application, you would filter the displayed posters here
+        console.log(`Category selected: ${this.textContent.trim()}`);
       });
     });
     
-    // Close poster info when clicking outside
+    // Close poster info when clicking outside of any poster
     document.addEventListener('click', function(e) {
       if (!e.target.closest('.poster')) {
-        document.querySelectorAll('.poster').forEach(p => p.classList.remove('active'));
+        closeAllPosters();
       }
     });
   </script>
