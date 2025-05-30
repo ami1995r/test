@@ -90,7 +90,7 @@
       background-color: #1a365d; /* Dark blue */
     }
     
-    /* Category tabs container styling - Reverted to non-sticky, simpler */
+    /* Category tabs container styling */
     .category-tabs {
       display: flex;
       justify-content: flex-start; /* Left-alignment */
@@ -182,12 +182,65 @@
         padding: 0.5rem 0.75rem; /* Adjust padding for mobile */
         font-size: 0.85rem; /* Adjusted font size for mobile */
       }
+      /* Adjustments for Hero Section on mobile */
+      .hero-section {
+        height: 200px; /* Shorter height on mobile */
+      }
+      .hero-section .text-md { /* Adjust button text size */
+        font-size: 0.9rem;
+      }
+      .hero-section .py-2 { /* Adjust button padding */
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+      }
+      .hero-section .px-6 { /* Adjust button padding */
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+
+      /* Adjustments for Filters on mobile */
+      .filters-container {
+        flex-direction: column; /* Stack filters vertically */
+        align-items: flex-start; /* Align items to start */
+        gap: 0.5rem; /* Reduce gap */
+      }
+      .filters-container label, .filters-container select, .filters-container button {
+        width: 100%; /* Full width for better touch targets */
+      }
+      .filters-container select {
+        min-width: unset; /* Remove min-width constraint */
+      }
     }
     
     /* Responsive adjustments for very small screens (max-width: 480px) */
     @media (max-width: 480px) {
       .poster-grid {
         grid-template-columns: repeat(2, 1fr) !important; /* Still 2 columns on small mobiles */
+      }
+      .header-bg .text-xl { /* Adjust logo size */
+        font-size: 1.25rem;
+      }
+      .header-bg .text-base { /* Adjust auth button text size */
+        font-size: 0.875rem;
+      }
+      .header-bg .py-0 { /* Adjust auth button padding */
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+      .header-bg .px-2 { /* Adjust auth button padding */
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+      }
+      .header-bg .space-x-2 { /* Adjust space between auth buttons */
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+      }
+      .header-bg .max-w-md { /* Adjust search bar width */
+        max-width: 150px;
+      }
+      .header-bg .py-2 { /* Adjust search bar padding */
+        padding-top: 0.3rem;
+        padding-bottom: 0.3rem;
       }
     }
   </style>
@@ -204,7 +257,10 @@
             <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-500"></i> </div>
         </div>
 
-        <div class="flex space-x-4"> <a href="#" class="auth-btn text-white text-base py-0 px-2 hover:text-blue-300 transition">ورود</a> <a href="#" class="auth-btn text-white text-base py-0 px-2 hover:text-blue-300 transition">عضویت</a> </div>
+        <div class="flex space-x-2">
+          <a href="#" class="auth-btn text-white text-base py-0 px-2 hover:text-blue-300 transition">ورود</a>
+          <a href="#" class="auth-btn text-white text-base py-0 px-2 hover:text-blue-300 transition">عضویت</a>
+        </div>
       </div>
     </div>
   </header>
@@ -217,8 +273,7 @@
   </div>
 
   <div class="container mx-auto px-4 pt-4 pb-4">
-      <div class="flex flex-wrap items-center justify-start gap-4 text-sm">
-          <label for="city-filter" class="text-gray-700">شهر:</label>
+      <div class="flex flex-wrap items-center justify-start gap-4 text-sm filters-container"> <label for="city-filter" class="text-gray-700">شهر:</label>
           <select id="city-filter" class="py-2 px-3 rounded-md border border-gray-300 bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400 min-w-[120px]">
               <option value="">همه شهرها</option>
               <option value="tehran">تهران</option>
