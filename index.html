@@ -108,7 +108,7 @@
       display: none;
     }
     
-    /* Individual category tab styling - Increased font size */
+    /* Individual category tab styling - Adjusted font size */
     .category-tab {
       padding: 0.5rem 0.5rem; /* Original padding */
       margin: 0 0.25rem; /* Original margin between tabs */
@@ -122,7 +122,7 @@
       background-color: transparent; /* Ensure no background */
       border-radius: 0; /* No border radius */
       box-shadow: none; /* No shadow */
-      font-size: 1.5rem; /* Increased font size to match h1 */
+      font-size: 1.25rem; /* Adjusted font size (smaller than h1, larger than original) */
     }
     
     /* Active category tab styling - Only dark blue text, removed underline */
@@ -180,7 +180,7 @@
       }
       .category-tab {
         padding: 0.5rem 0.75rem; /* Adjust padding for mobile */
-        font-size: 1.25rem; /* Adjusted font size for mobile */
+        font-size: 1.1rem; /* Adjusted font size for mobile */
       }
       /* Adjustments for Hero Section on mobile */
       .hero-section {
@@ -201,24 +201,9 @@
         padding-right: 1rem;
       }
 
-      /* Adjustments for Filters on mobile */
+      /* Filters are now completely hidden on mobile */
       .filters-container {
-        flex-wrap: nowrap; /* Prevent wrapping */
-        overflow-x: auto; /* Enable horizontal scrolling */
-        -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
-        scrollbar-width: none; /* Hide scrollbar for Firefox */
-        gap: 0.75rem; /* Adjust gap */
-        justify-content: flex-start; /* Ensure left alignment for scroll */
-      }
-      .filters-container::-webkit-scrollbar {
-        display: none; /* Hide scrollbar for Webkit browsers */
-      }
-      .filters-container select {
-        min-width: 120px; /* Give a minimum width to select boxes */
-        flex-shrink: 0; /* Prevent shrinking */
-      }
-      .filters-container button {
-        flex-shrink: 0; /* Prevent shrinking */
+        display: none; /* Hide filters on mobile */
       }
     }
     
@@ -230,27 +215,33 @@
       .header-bg .text-xl { /* Adjust logo size */
         font-size: 1.25rem;
       }
-      .header-bg .text-base { /* Adjust auth button text size */
-        font-size: 0.875rem;
+      .header-bg .auth-buttons { /* Target auth buttons container */
+        flex-shrink: 0; /* Prevent auth buttons from shrinking */
       }
-      .header-bg .py-0 { /* Adjust auth button padding */
-        padding-top: 0;
-        padding-bottom: 0;
-      }
-      .header-bg .px-2 { /* Adjust auth button padding */
-        padding-left: 0.5rem;
-        padding-right: 0.5rem;
+      .header-bg .auth-btn { /* Adjust auth button text size */
+        font-size: 0.875rem; /* text-base to text-sm */
+        padding: 0; /* Remove padding */
       }
       .header-bg .space-x-2 { /* Adjust space between auth buttons */
         margin-left: 0.5rem;
         margin-right: 0.5rem;
       }
-      .header-bg .max-w-md { /* Adjust search bar width */
-        max-width: 150px;
+      .header-bg .flex-grow.mx-4.max-w-md { /* Target search bar container */
+        flex-grow: 1; /* Allow search bar to grow */
+        max-width: none; /* Remove max-width constraint */
+        margin-left: 0.5rem; /* Adjust margins */
+        margin-right: 0.5rem;
       }
-      .header-bg .py-2 { /* Adjust search bar padding */
+      .header-bg input[type="text"] { /* Adjust search bar input */
         padding-top: 0.3rem;
         padding-bottom: 0.3rem;
+        padding-right: 2.5rem; /* Adjust right padding for text */
+        padding-left: 1rem; /* Adjust left padding for icon */
+        font-size: 0.75rem; /* Smaller font size */
+      }
+      .header-bg .fa-search { /* Adjust search icon position */
+        left: 0.5rem; /* Move icon slightly right */
+        font-size: 0.8rem; /* Smaller icon */
       }
     }
   </style>
@@ -267,8 +258,7 @@
             <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-500"></i> </div>
         </div>
 
-        <div class="flex space-x-2">
-          <a href="#" class="auth-btn text-white text-base py-0 px-2 hover:text-blue-300 transition">ورود</a>
+        <div class="flex space-x-2 auth-buttons"> <a href="#" class="auth-btn text-white text-base py-0 px-2 hover:text-blue-300 transition">ورود</a>
           <a href="#" class="auth-btn text-white text-base py-0 px-2 hover:text-blue-300 transition">عضویت</a>
         </div>
       </div>
@@ -282,8 +272,7 @@
       </div>
   </div>
 
-  <div class="container mx-auto px-4 pt-4 pb-4">
-      <div class="flex flex-wrap items-center justify-start gap-4 text-sm filters-container">
+  <div class="container mx-auto px-4 pt-4 pb-4 hidden md:block"> <div class="flex flex-wrap items-center justify-start gap-4 text-sm filters-container">
           <select id="city-filter" class="py-2 px-3 rounded-md border border-gray-300 bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400 min-w-[120px]">
               <option value="">شهر: همه</option>
               <option value="tehran">تهران</option>
@@ -317,7 +306,7 @@
       </div>
   </div>
 
-  <div class="container mx-auto px-4 pt-4 pb-0"> <div class="category-tabs">
+  <div class="container mx-auto px-4 pt-4 pb-0 border-b border-gray-300"> <div class="category-tabs">
       <div class="category-tab active">تئاتر</div>
       <div class="category-tab">نمایشنامه خوانی</div>
       <div class="category-tab">کودک و نوجوان</div>
