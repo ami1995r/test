@@ -208,27 +208,28 @@
         background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.2));
         border-radius: 12px 12px 0 0; /* Match image corners */
       }
-      .hero-section-mobile .hero-content-box {
-        background-color: white;
+      .hero-section-mobile .hero-content-overlay { /* New class for content overlay */
+        position: absolute;
+        inset-x: 0;
+        bottom: 0;
         padding: 1rem;
-        border-radius: 0 0 12px 12px; /* Rounded bottom corners */
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); /* Subtle shadow */
-        position: relative; /* For z-index */
-        z-index: 2; /* Ensure it's above other elements if needed */
+        z-index: 10; /* Ensure content is above overlay */
+        color: white;
+        text-align: right;
       }
       .hero-section-mobile .hero-title {
         font-size: 1.5rem; /* Smaller title for mobile */
         font-weight: bold;
-        text-align: right;
         margin-bottom: 0.5rem;
-        color: #333;
+        color: white; /* Ensure text is white for overlay */
+        text-shadow: 1px 1px 3px rgba(0,0,0,0.7); /* Add text shadow for readability */
       }
       .hero-section-mobile .hero-summary {
         font-size: 0.875rem; /* Smaller summary for mobile */
-        text-align: right;
-        color: #666;
+        color: white; /* Ensure text is white for overlay */
         line-height: 1.5;
         margin-bottom: 1rem;
+        text-shadow: 1px 1px 3px rgba(0,0,0,0.7); /* Add text shadow for readability */
       }
       .hero-section-mobile .hero-button-container {
         display: flex;
@@ -323,13 +324,12 @@
       <div class="hero-section-mobile md:hidden rounded-xl overflow-hidden shadow-md">
           <div class="hero-image-container">
               <img src="https://placehold.co/600x337/333333/F8F8F8?text=Mobile+Banner+Image" alt="Mobile Banner" class="w-full h-full object-cover">
-              <div class="hero-overlay"></div>
-          </div>
-          <div class="hero-content-box">
-              <h2 class="hero-title">عنوان نمایش برجسته</h2>
-              <p class="hero-summary">اینجا یک خلاصه کوتاه و جذاب از نمایش یا رویداد قرار می‌گیرد. متن کوتاه و خوانا برای جلب توجه بیشتر.</p>
-              <div class="hero-button-container">
-                  <a href="#" class="hero-button">تهیه بلیت</a>
+              <div class="absolute inset-0 hero-overlay"></div>
+              <div class="hero-content-overlay"> <h2 class="hero-title">عنوان نمایش برجسته</h2>
+                  <p class="hero-summary">اینجا یک خلاصه کوتاه و جذاب از نمایش یا رویداد قرار می‌گیرد. متن کوتاه و خوانا برای جلب توجه بیشتر.</p>
+                  <div class="hero-button-container">
+                      <a href="#" class="hero-button">تهیه بلیت</a>
+                  </div>
               </div>
           </div>
       </div>
