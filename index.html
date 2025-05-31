@@ -183,22 +183,70 @@
         font-size: 1.1rem; /* Adjusted font size for mobile */
       }
       /* Adjustments for Hero Section on mobile */
-      .hero-section {
-        height: 200px; /* Shorter height on mobile */
+      .hero-section-desktop {
+        display: none; /* Hide desktop hero on mobile */
       }
-      .hero-section .hero-overlay { /* Added overlay for mobile hero */
+      .hero-section-mobile {
+        display: block; /* Show mobile hero on mobile */
+      }
+      .hero-section-mobile .hero-image-container {
+        position: relative;
+        width: 100%;
+        padding-bottom: 56.25%; /* 16:9 aspect ratio */
+        overflow: hidden; /* Ensure rounded corners apply */
+      }
+      .hero-section-mobile .hero-image-container img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 12px 12px 0 0; /* Rounded top corners */
+      }
+      .hero-section-mobile .hero-overlay {
+        position: absolute;
+        inset: 0;
         background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.2));
+        border-radius: 12px 12px 0 0; /* Match image corners */
       }
-      .hero-section .text-md { /* Adjust button text size */
-        font-size: 0.9rem;
+      .hero-section-mobile .hero-content-box {
+        background-color: white;
+        padding: 1rem;
+        border-radius: 0 0 12px 12px; /* Rounded bottom corners */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+        position: relative; /* For z-index */
+        z-index: 2; /* Ensure it's above other elements if needed */
       }
-      .hero-section .py-2 { /* Adjust button padding */
-        padding-top: 0.5rem;
-        padding-bottom: 0.5rem;
+      .hero-section-mobile .hero-title {
+        font-size: 1.5rem; /* Smaller title for mobile */
+        font-weight: bold;
+        text-align: right;
+        margin-bottom: 0.5rem;
+        color: #333;
       }
-      .hero-section .px-6 { /* Adjust button padding */
-        padding-left: 1rem;
-        padding-right: 1rem;
+      .hero-section-mobile .hero-summary {
+        font-size: 0.875rem; /* Smaller summary for mobile */
+        text-align: right;
+        color: #666;
+        line-height: 1.5;
+        margin-bottom: 1rem;
+      }
+      .hero-section-mobile .hero-button-container {
+        display: flex;
+        justify-content: flex-end; /* Align button to right */
+      }
+      .hero-section-mobile .hero-button {
+        background: linear-gradient(to right, #3b82f6, #2563eb);
+        color: white;
+        padding: 0.5rem 1rem; /* Smaller padding for mobile button */
+        border-radius: 9999px;
+        font-size: 0.9rem; /* Smaller font for mobile button */
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 4px rgba(59, 130, 246, 0.3);
+      }
+      .hero-section-mobile .hero-button:hover {
+        background: linear-gradient(to right, #2563eb, #1d4ed8);
+        box-shadow: 0 3px 6px rgba(59, 130, 246, 0.4);
       }
 
       /* Filters are now completely hidden on mobile */
@@ -265,9 +313,24 @@
     </div>
   </header>
 
-  <div class="container mx-auto px-4 pt-4 pb-4"> <div class="hero-section bg-cover bg-center h-64 relative flex items-center justify-center text-center rounded-xl overflow-hidden" style="background-image: url('https://placehold.co/1200x600/333333/F8F8F8?text=Main+Banner+Image');">
-          <div class="absolute inset-0 hero-overlay"></div> <div class="relative z-10 text-white p-4 flex flex-col justify-end h-full w-full">
+  <div class="container mx-auto px-4 pt-4 pb-4">
+      <div class="hero-section-desktop hidden md:block bg-cover bg-center h-64 relative flex items-center justify-center text-center rounded-xl overflow-hidden" style="background-image: url('https://placehold.co/1200x600/333333/F8F8F8?text=Main+Banner+Image');">
+          <div class="relative z-10 text-white p-4 flex flex-col justify-end h-full w-full">
               <a href="#" class="inline-block bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white text-md py-2 px-6 rounded-full transition duration-300 ease-in-out shadow-lg self-center mb-4">تهیه بلیت</a>
+          </div>
+      </div>
+
+      <div class="hero-section-mobile md:hidden rounded-xl overflow-hidden shadow-md">
+          <div class="hero-image-container">
+              <img src="https://placehold.co/600x337/333333/F8F8F8?text=Mobile+Banner+Image" alt="Mobile Banner" class="w-full h-full object-cover">
+              <div class="hero-overlay"></div>
+          </div>
+          <div class="hero-content-box">
+              <h2 class="hero-title">عنوان نمایش برجسته</h2>
+              <p class="hero-summary">اینجا یک خلاصه کوتاه و جذاب از نمایش یا رویداد قرار می‌گیرد. متن کوتاه و خوانا برای جلب توجه بیشتر.</p>
+              <div class="hero-button-container">
+                  <a href="#" class="hero-button">تهیه بلیت</a>
+              </div>
           </div>
       </div>
   </div>
