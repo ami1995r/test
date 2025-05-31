@@ -273,7 +273,7 @@
       }
       .header-bg .flex-grow.mx-4.max-w-md { /* Target search bar container */
         flex-grow: 1; /* Allow search bar to grow */
-        max-width: none; /* Remove max-width constraint */
+        max-width: 150px; /* Reduced max-width for search bar */
         margin-left: 0.5rem; /* Adjust margins */
         margin-right: 0.5rem;
       }
@@ -325,47 +325,15 @@
       </div>
 
       <div class="hero-section-mobile md:hidden rounded-xl overflow-hidden shadow-md relative">
-          <div id="mobile-hero-carousel" class="flex transition-transform duration-500 ease-in-out">
-              <div class="w-full flex-shrink-0">
-                  <div class="hero-image-container">
-                      <img src="https://placehold.co/600x337/333333/F8F8F8?text=Mobile+Banner+1" alt="Mobile Banner 1" class="w-full h-full object-cover">
-                  </div>
-                  <div class="hero-content-box p-4 rounded-b-xl">
-                      <h2 class="hero-title text-base font-bold text-right mb-1">عنوان نمایش ۱</h2> <p class="hero-summary text-xs text-right leading-relaxed mb-2">خلاصه کوتاه و جذاب از نمایش یا رویداد اول.</p>
-                      <div class="hero-button-container flex justify-end">
-                          <a href="#" class="hero-button">تهیه بلیت</a>
-                      </div>
-                  </div>
-              </div>
-              <div class="w-full flex-shrink-0">
-                  <div class="hero-image-container">
-                      <img src="https://placehold.co/600x337/556270/F8F8F8?text=Mobile+Banner+2" alt="Mobile Banner 2" class="w-full h-full object-cover">
-                  </div>
-                  <div class="hero-content-box p-4 rounded-b-xl">
-                      <h2 class="hero-title text-base font-bold text-right mb-1">نمایش جدید و هیجان‌انگیز</h2>
-                      <p class="hero-summary text-xs text-right leading-relaxed mb-2">داستانی پرکشش و بازی‌های درخشان را از دست ندهید.</p>
-                      <div class="hero-button-container flex justify-end">
-                          <a href="#" class="hero-button">تهیه بلیت</a>
-                      </div>
-                  </div>
-              </div>
-              <div class="w-full flex-shrink-0">
-                  <div class="hero-image-container">
-                      <img src="https://placehold.co/600x337/707070/D1D5DB?text=Mobile+Banner+3" alt="Mobile Banner 3" class="w-full h-full object-cover">
-                  </div>
-                  <div class="hero-content-box p-4 rounded-b-xl">
-                      <h2 class="hero-title text-base font-bold text-right mb-1">کنسرت بزرگ سال</h2>
-                      <p class="hero-summary text-xs text-right leading-relaxed mb-2">تجربه‌ای بی‌نظیر از موسیقی زنده با هنرمندان محبوب.</p>
-                      <div class="hero-button-container flex justify-end">
-                          <a href="#" class="hero-button">تهیه بلیت</a>
-                      </div>
-                  </div>
-              </div>
+          <div class="hero-image-container">
+              <img src="https://placehold.co/600x337/333333/F8F8F8?text=Mobile+Banner+Image" alt="Mobile Banner" class="w-full h-full object-cover">
           </div>
-          <div class="absolute bottom-4 left-0 right-0 flex justify-center space-x-2 z-10">
-              <span class="carousel-dot w-2 h-2 bg-gray-300 rounded-full cursor-pointer opacity-75" data-slide="0"></span>
-              <span class="carousel-dot w-2 h-2 bg-gray-300 rounded-full cursor-pointer opacity-75" data-slide="1"></span>
-              <span class="carousel-dot w-2 h-2 bg-gray-300 rounded-full cursor-pointer opacity-75" data-slide="2"></span>
+          <div class="hero-content-box p-4 rounded-b-xl">
+              <h2 class="hero-title text-base font-bold text-right mb-1">عنوان نمایش برجسته</h2>
+              <p class="hero-summary text-xs text-right leading-relaxed mb-2">اینجا یک خلاصه کوتاه و جذاب از نمایش یا رویداد قرار می‌گیرد. متن کوتاه و خوانا برای جلب توجه بیشتر.</p>
+              <div class="hero-button-container flex justify-end">
+                  <a href="#" class="hero-button">تهیه بلیت</a>
+              </div>
           </div>
       </div>
   </div>
@@ -606,70 +574,11 @@
   </footer>
 
   <script>
-    // Mobile Hero Carousel functionality
-    const carousel = document.getElementById('mobile-hero-carousel');
-    const dots = document.querySelectorAll('.carousel-dot');
-    let currentSlide = 0;
-    const totalSlides = dots.length;
-    let touchStartX = 0;
-    let touchEndX = 0;
-    let autoSlideInterval;
-
-    function updateCarousel() {
-        carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
-        dots.forEach((dot, index) => {
-            if (index === currentSlide) {
-                dot.classList.add('bg-blue-500');
-                dot.classList.remove('bg-gray-300');
-            } else {
-                dot.classList.remove('bg-blue-500');
-                dot.classList.add('bg-gray-300');
-            }
-        });
-        resetAutoSlide(); // Reset timer on manual interaction
+    // Mobile Hero Carousel functionality - Reverted to static banner
+    const mobileHeroSection = document.querySelector('.hero-section-mobile');
+    if (mobileHeroSection) { // Only run if mobile hero section exists
+        // No carousel logic needed for static banner
     }
-
-    function resetAutoSlide() {
-        clearInterval(autoSlideInterval);
-        autoSlideInterval = setInterval(() => {
-            currentSlide = (currentSlide + 1) % totalSlides;
-            updateCarousel();
-        }, 5000); // Change slide every 5 seconds
-    }
-
-    // Initialize carousel and auto-advance
-    updateCarousel();
-    resetAutoSlide();
-
-    dots.forEach(dot => {
-        dot.addEventListener('click', (event) => {
-            currentSlide = parseInt(event.target.dataset.slide);
-            updateCarousel();
-        });
-    });
-
-    // Touch/Swipe functionality
-    carousel.addEventListener('touchstart', (e) => {
-        touchStartX = e.touches[0].clientX;
-        clearInterval(autoSlideInterval); // Stop auto-slide on touch
-    });
-
-    carousel.addEventListener('touchmove', (e) => {
-        touchEndX = e.touches[0].clientX;
-    });
-
-    carousel.addEventListener('touchend', () => {
-        const swipeThreshold = 50; // Minimum distance for a swipe
-        const swipeDistance = touchEndX - touchStartX;
-
-        if (swipeDistance > swipeThreshold) { // Swiped right (RTL: previous slide)
-            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-        } else if (swipeDistance < -swipeThreshold) { // Swiped left (RTL: next slide)
-            currentSlide = (currentSlide + 1) % totalSlides;
-        }
-        updateCarousel();
-        resetAutoSlide(); // Restart auto-slide after touch ends
-    });
 
     // Get all poster elements (existing code)
     const posters = document.querySelectorAll('.poster');
