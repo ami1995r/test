@@ -188,12 +188,11 @@
       }
       .hero-section-mobile {
         display: block; /* Show mobile hero on mobile */
-        /* Removed fixed height, it will be determined by content */
       }
       .hero-section-mobile .hero-image-container {
         position: relative;
         width: 100%;
-        padding-bottom: 56.25%; /* 16:9 aspect ratio */
+        padding-bottom: 40%; /* Adjusted aspect ratio for shorter rectangle (e.g., 2.5:1) */
         overflow: hidden; /* Ensure rounded corners apply */
       }
       .hero-section-mobile .hero-image-container img {
@@ -203,11 +202,8 @@
         object-fit: cover;
         border-radius: 12px 12px 0 0; /* Rounded top corners */
       }
-      .hero-section-mobile .hero-overlay { /* This overlay is for the image itself if needed, not the text box */
-        display: none; /* Hide this specific overlay if text is separate */
-      }
-      .hero-section-mobile .hero-content-box { /* New class for the content part */
-        background-color: white; /* White background for the text part */
+      .hero-section-mobile .hero-content-box { /* Content box styling */
+        background: linear-gradient(to bottom, #ffffff, #f0f0f0); /* Subtle white to light gray gradient */
         padding: 1rem;
         border-radius: 0 0 12px 12px; /* Rounded bottom corners */
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); /* Subtle shadow */
@@ -324,10 +320,12 @@
       <div class="hero-section-mobile md:hidden rounded-xl overflow-hidden shadow-md">
           <div class="hero-image-container">
               <img src="https://placehold.co/600x337/333333/F8F8F8?text=Mobile+Banner+Image" alt="Mobile Banner" class="w-full h-full object-cover">
-              </div>
-          <div class="hero-content-box p-4 bg-white text-gray-800 rounded-b-xl"> <h2 class="hero-title text-xl font-bold text-right mb-2">عنوان نمایش برجسته</h2> <p class="hero-summary text-sm text-right leading-relaxed mb-4">اینجا یک خلاصه کوتاه و جذاب از نمایش یا رویداد قرار می‌گیرد. متن کوتاه و خوانا برای جلب توجه بیشتر.</p>
+          </div>
+          <div class="hero-content-box p-4 rounded-b-xl"> <h2 class="hero-title text-xl font-bold text-right mb-2">عنوان نمایش برجسته</h2>
+              <p class="hero-summary text-sm text-right leading-relaxed mb-4">اینجا یک خلاصه کوتاه و جذاب از نمایش یا رویداد قرار می‌گیرد. متن کوتاه و خوانا برای جلب توجه بیشتر.</p>
               <div class="hero-button-container flex justify-end">
-                  <a href="#" class="hero-button bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white py-2 px-4 rounded-full text-sm font-semibold shadow-md">تهیه بلیت</a> </div>
+                  <a href="#" class="hero-button bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white py-2 px-4 rounded-full text-sm font-semibold shadow-md">تهیه بلیت</a>
+              </div>
           </div>
       </div>
   </div>
