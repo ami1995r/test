@@ -303,8 +303,15 @@
             <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-500"></i> </div>
         </div>
 
-        <div class="flex space-x-2 auth-buttons"> <a href="#" class="auth-btn text-white text-base py-0 px-2 hover:text-blue-300 transition">ورود</a>
+        <div class="hidden md:flex space-x-2 auth-buttons">
+          <a href="#" class="auth-btn text-white text-base py-0 px-2 hover:text-blue-300 transition">ورود</a>
           <a href="#" class="auth-btn text-white text-base py-0 px-2 hover:text-blue-300 transition">عضویت</a>
+        </div>
+
+        <div class="md:hidden">
+            <a href="#" class="text-white text-xl hover:text-blue-300 transition">
+                <i class="fas fa-user-circle"></i>
+            </a>
         </div>
       </div>
     </div>
@@ -317,15 +324,49 @@
           </div>
       </div>
 
-      <div class="hero-section-mobile md:hidden rounded-xl overflow-hidden shadow-md">
-          <div class="hero-image-container">
-              <img src="https://placehold.co/600x337/333333/F8F8F8?text=Mobile+Banner+Image" alt="Mobile Banner" class="w-full h-full object-cover">
-          </div>
-          <div class="hero-content-box p-4 rounded-b-xl"> <h2 class="hero-title text-xl font-bold text-right mb-2">عنوان نمایش برجسته</h2>
-              <p class="hero-summary text-sm text-right leading-relaxed mb-4">اینجا یک خلاصه کوتاه و جذاب از نمایش یا رویداد قرار می‌گیرد. متن کوتاه و خوانا برای جلب توجه بیشتر.</p>
-              <div class="hero-button-container flex justify-end">
-                  <a href="#" class="hero-button bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white py-2 px-4 rounded-full text-sm font-semibold shadow-md">تهیه بلیت</a>
+      <div class="hero-section-mobile md:hidden rounded-xl overflow-hidden shadow-md relative">
+          <div id="mobile-hero-carousel" class="flex transition-transform duration-500 ease-in-out">
+              <div class="w-full flex-shrink-0">
+                  <div class="hero-image-container">
+                      <img src="https://placehold.co/600x337/333333/F8F8F8?text=Mobile+Banner+1" alt="Mobile Banner 1" class="w-full h-full object-cover">
+                  </div>
+                  <div class="hero-content-box p-4 rounded-b-xl">
+                      <h2 class="hero-title text-lg font-bold text-right mb-1">عنوان نمایش ۱</h2>
+                      <p class="hero-summary text-xs text-right leading-relaxed mb-2">خلاصه کوتاه و جذاب از نمایش یا رویداد اول.</p>
+                      <div class="hero-button-container flex justify-end">
+                          <a href="#" class="hero-button">تهیه بلیت</a>
+                      </div>
+                  </div>
               </div>
+              <div class="w-full flex-shrink-0">
+                  <div class="hero-image-container">
+                      <img src="https://placehold.co/600x337/4B5563/F3F4F6?text=Mobile+Banner+2" alt="Mobile Banner 2" class="w-full h-full object-cover">
+                  </div>
+                  <div class="hero-content-box p-4 rounded-b-xl">
+                      <h2 class="hero-title text-lg font-bold text-right mb-1">عنوان نمایش ۲</h2>
+                      <p class="hero-summary text-xs text-right leading-relaxed mb-2">خلاصه کوتاه و جذاب از نمایش یا رویداد دوم.</p>
+                      <div class="hero-button-container flex justify-end">
+                          <a href="#" class="hero-button">تهیه بلیت</a>
+                      </div>
+                  </div>
+              </div>
+              <div class="w-full flex-shrink-0">
+                  <div class="hero-image-container">
+                      <img src="https://placehold.co/600x337/6B7280/D1D5DB?text=Mobile+Banner+3" alt="Mobile Banner 3" class="w-full h-full object-cover">
+                  </div>
+                  <div class="hero-content-box p-4 rounded-b-xl">
+                      <h2 class="hero-title text-lg font-bold text-right mb-1">عنوان نمایش ۳</h2>
+                      <p class="hero-summary text-xs text-right leading-relaxed mb-2">خلاصه کوتاه و جذاب از نمایش یا رویداد سوم.</p>
+                      <div class="hero-button-container flex justify-end">
+                          <a href="#" class="hero-button">تهیه بلیت</a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="absolute bottom-4 left-0 right-0 flex justify-center space-x-2 z-10">
+              <span class="carousel-dot w-2 h-2 bg-gray-300 rounded-full cursor-pointer opacity-75" data-slide="0"></span>
+              <span class="carousel-dot w-2 h-2 bg-gray-300 rounded-full cursor-pointer opacity-75" data-slide="1"></span>
+              <span class="carousel-dot w-2 h-2 bg-gray-300 rounded-full cursor-pointer opacity-75" data-slide="2"></span>
           </div>
       </div>
   </div>
@@ -752,6 +793,38 @@
   </footer>
 
   <script>
+    // Mobile Hero Carousel functionality
+    const carousel = document.getElementById('mobile-hero-carousel');
+    const dots = document.querySelectorAll('.carousel-dot');
+    let currentSlide = 0;
+    const totalSlides = dots.length;
+
+    function updateCarousel() {
+        carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
+        dots.forEach((dot, index) => {
+            if (index === currentSlide) {
+                dot.classList.add('bg-blue-500');
+                dot.classList.remove('bg-gray-300');
+            } else {
+                dot.classList.remove('bg-blue-500');
+                dot.classList.add('bg-gray-300');
+            }
+        });
+    }
+
+    dots.forEach(dot => {
+        dot.addEventListener('click', (event) => {
+            currentSlide = parseInt(event.target.dataset.slide);
+            updateCarousel();
+        });
+    });
+
+    // Auto-advance carousel
+    setInterval(() => {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        updateCarousel();
+    }, 5000); // Change slide every 5 seconds
+
     // Get all poster elements
     const posters = document.querySelectorAll('.poster');
     // Get all category tab elements
