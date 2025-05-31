@@ -188,6 +188,7 @@
       }
       .hero-section-mobile {
         display: block; /* Show mobile hero on mobile */
+        /* Removed fixed height, it will be determined by content */
       }
       .hero-section-mobile .hero-image-container {
         position: relative;
@@ -202,34 +203,33 @@
         object-fit: cover;
         border-radius: 12px 12px 0 0; /* Rounded top corners */
       }
-      .hero-section-mobile .hero-overlay {
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.2));
-        border-radius: 12px 12px 0 0; /* Match image corners */
+      .hero-section-mobile .hero-overlay { /* This overlay is for the image itself if needed, not the text box */
+        display: none; /* Hide this specific overlay if text is separate */
       }
-      .hero-section-mobile .hero-content-overlay { /* New class for content overlay */
-        position: absolute;
-        inset-x: 0;
-        bottom: 0;
+      .hero-section-mobile .hero-content-box { /* New class for the content part */
+        background-color: white; /* White background for the text part */
         padding: 1rem;
-        z-index: 10; /* Ensure content is above overlay */
-        color: white;
-        text-align: right;
+        border-radius: 0 0 12px 12px; /* Rounded bottom corners */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+        position: relative; /* For z-index */
+        z-index: 2; /* Ensure it's above other elements if needed */
+        color: #333; /* Default text color for content box */
       }
       .hero-section-mobile .hero-title {
         font-size: 1.5rem; /* Smaller title for mobile */
         font-weight: bold;
+        text-align: right;
         margin-bottom: 0.5rem;
-        color: white; /* Ensure text is white for overlay */
-        text-shadow: 1px 1px 3px rgba(0,0,0,0.7); /* Add text shadow for readability */
+        color: #333; /* Ensure text is dark for white background */
+        text-shadow: none; /* Remove text shadow */
       }
       .hero-section-mobile .hero-summary {
         font-size: 0.875rem; /* Smaller summary for mobile */
-        color: white; /* Ensure text is white for overlay */
+        text-align: right;
+        color: #666; /* Darker gray for summary */
         line-height: 1.5;
         margin-bottom: 1rem;
-        text-shadow: 1px 1px 3px rgba(0,0,0,0.7); /* Add text shadow for readability */
+        text-shadow: none; /* Remove text shadow */
       }
       .hero-section-mobile .hero-button-container {
         display: flex;
@@ -324,13 +324,10 @@
       <div class="hero-section-mobile md:hidden rounded-xl overflow-hidden shadow-md">
           <div class="hero-image-container">
               <img src="https://placehold.co/600x337/333333/F8F8F8?text=Mobile+Banner+Image" alt="Mobile Banner" class="w-full h-full object-cover">
-              <div class="absolute inset-0 hero-overlay"></div>
-              <div class="hero-content-overlay"> <h2 class="hero-title">عنوان نمایش برجسته</h2>
-                  <p class="hero-summary">اینجا یک خلاصه کوتاه و جذاب از نمایش یا رویداد قرار می‌گیرد. متن کوتاه و خوانا برای جلب توجه بیشتر.</p>
-                  <div class="hero-button-container">
-                      <a href="#" class="hero-button">تهیه بلیت</a>
-                  </div>
               </div>
+          <div class="hero-content-box p-4 bg-white text-gray-800 rounded-b-xl"> <h2 class="hero-title text-xl font-bold text-right mb-2">عنوان نمایش برجسته</h2> <p class="hero-summary text-sm text-right leading-relaxed mb-4">اینجا یک خلاصه کوتاه و جذاب از نمایش یا رویداد قرار می‌گیرد. متن کوتاه و خوانا برای جلب توجه بیشتر.</p>
+              <div class="hero-button-container flex justify-end">
+                  <a href="#" class="hero-button bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white py-2 px-4 rounded-full text-sm font-semibold shadow-md">تهیه بلیت</a> </div>
           </div>
       </div>
   </div>
